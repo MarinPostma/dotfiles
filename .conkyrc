@@ -1,0 +1,19 @@
+conky.config =
+{
+  alignment = 'bottom_right',
+  background = false,
+  use_xft = true,
+  own_window = true,
+  own_window_colour = '000000',
+  own_window_class = 'Conky',
+  own_window_argb_visual = true,
+  own_window_type = 'override',
+  own_window_transparent = true,
+  draw_shades = false,
+  gap_x = 100,
+  gap_y = 80,
+}
+conky.text = [[
+$color${font}${font Open Sans:size=44}$alignr${time %H:%M}$font$color${font Open Sans:size=15}
+  $alignr${time %a}, ${time %d %b %Y}$font$color
+]]
