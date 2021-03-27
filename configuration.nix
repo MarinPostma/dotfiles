@@ -83,24 +83,34 @@
   environment.systemPackages = with pkgs; [
     brave
     conky
+    fd
     feh
+    fzf
     git
+    github-cli
+    lsd
     neovim-nightly
+    nerdfonts
     oh-my-zsh
     picom
+    rust-analyzer
+    rustup
     tmux
+    tree-sitter
     vim
     xmonad-with-packages
     zsh
-    rustup
+    gnutar
+    gzip
+    gnumake
     gcc
-    nerdfonts
-    tree-sitter
-    github-cli
-    fzf
-    fd
-    rust-analyzer
-    lsd
+    binutils-unwrapped
+    coreutils
+    gawk
+    gnused
+    gnugrep
+    patchelf
+    findutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
