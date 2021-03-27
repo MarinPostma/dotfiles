@@ -49,7 +49,7 @@
   # Enable Oh-my-zsh
   programs.zsh.ohMyZsh = {
     enable = true;
-    plugins = [ "git" "sudo" "cargo" ];
+    plugins = [ "git" "sudo" "cargo" "ssh-agent"];
   };
 
   # Configure keymap in X11
