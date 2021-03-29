@@ -14,12 +14,14 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
+  boot.blacklistedKernelModules = [ "i915" ];
+
 
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/Paris";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -39,8 +41,16 @@
   # };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.displayManager.startx.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.lightdm.enable = true;
+    videoDrivers = [ "nvidia" ];
+    desktopManager.xterm.enable = false;
+    windowManager.xmonad.enable = true;
+    displayManager.defaultSession = "none+xmonad";
+    libinput.mouse.accelSpeed = "-1.0";
+    libinput.mouse.accelProfile = "flat";
+  };
 
 
  # Enable zsh
@@ -70,29 +80,50 @@
    users.users.mpostma = {
      isNormalUser = true;
      shell = pkgs.zsh;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
    };
 
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
+
+   nixpkgs = {
+     config.allowUnfree = true;
+     overlays = [
+       (import (builtins.fetchTarball {
+         url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+       }))
+     ];
+   };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    binutils-unwrapped
     brave
+    clang
     conky
+    coreutils
     fd
     feh
+    findutils
     fzf
+    gawk
+    gcc
     git
     github-cli
+    gnugrep
+    gnumake
+    gnused
+    gnutar
+    gzip
+    htop
     lsd
     neovim-nightly
     nerdfonts
     oh-my-zsh
+    openssl.dev
+    patchelf
+    pciutils
     picom
+    pkgconfig
+    ripgrep
     rust-analyzer
     rustup
     tmux
@@ -100,17 +131,6 @@
     vim
     xmonad-with-packages
     zsh
-    gnutar
-    gzip
-    gnumake
-    gcc
-    binutils-unwrapped
-    coreutils
-    gawk
-    gnused
-    gnugrep
-    patchelf
-    findutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -138,9 +158,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
-
-  nixpkgs.config.allowUnfree = true;
-
+  system.stateVersion = "21.03"; # Did you read the comment?
 }
 

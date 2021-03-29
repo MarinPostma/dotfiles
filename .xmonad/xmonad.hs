@@ -13,18 +13,17 @@ main = xmonad $ desktopConfig
     , layoutHook  = layout
     }
     `additionalKeysP`
-        [ ("M-i", spawn "opera")
+        [ ("M-i", spawn "brave")
         , ("M-<Space>", spawn "rofi -show run")
         , ("M-<Return>", spawn "kitty")
         , ("M-S-q", kill)
         , ("M-S-e", io (exitWith ExitSuccess))
         , ("M-<F1>", spawn "sleep 0.5 && scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'")
         , ("M-S-<Space>", sendMessage NextLayout)
-        , ("XF86MonBrightnessUp", spawn "xbacklight -inc 10")
-        , ("XF86MonBrightnessDown", spawn "kitty")
         ]
 
 startup = do
+    spawn "xinput --set-prop 'Logitech G502 HERO Gaming Mouse' 'Device Accel Constant Deceleration' 2.5"
     spawn "xinput set-button-map 'ETPS/2 Elantech Touchpad' 1 1 3"
     spawn "xset r rate 180 60"
     spawn "feh --bg-scale /home/mpostma/Pictures/wallpaper.jpg"
