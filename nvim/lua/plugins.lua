@@ -5,14 +5,13 @@ return require('packer').startup(function()
 		'kyazdani42/nvim-tree.lua',
 		requires = 'kyazdani42/nvim-web-devicons'
 	}
-	use 'chriskempson/base16-vim'
+	use 'norcalli/nvim-base16.lua'
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
 	}
-	use 'jiangmiao/auto-pairs'
-	use 'airblade/vim-gitgutter'
 	use 'tpope/vim-fugitive'
+	use 'windwp/nvim-autopairs'
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 	use {
 		'glepnir/galaxyline.nvim',
@@ -24,11 +23,12 @@ return require('packer').startup(function()
 	}
 	use 'neovim/nvim-lspconfig'
 	use 'nvim-lua/lsp_extensions.nvim'
-	use 'nvim-lua/completion-nvim'
+	use 'hrsh7th/nvim-compe'
 	use 'tpope/vim-surround'
 	use 'voldikss/vim-floaterm'
 	use 'preservim/nerdcommenter'
 	use 'sheerun/vim-polyglot'
+	use 'onsails/lspkind-nvim'
 	use {
 		'pwntester/octo.nvim',
 		requires = {
@@ -44,5 +44,15 @@ return require('packer').startup(function()
 	}
 	use 'mhartington/oceanic-next'
 	use 'Yggdroot/indentLine'
+	use 'lukas-reineke/indent-blankline.nvim'
 	use 'mfussenegger/nvim-dap'
+	use {
+		'lewis6991/gitsigns.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim'
+		}
+}
+	use 'akinsho/nvim-bufferline.lua'
+	use 'hrsh7th/vim-vsnip'
+	use 'hrsh7th/vim-vsnip-integ'
 end)

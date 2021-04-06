@@ -8,8 +8,9 @@ vim.api.nvim_set_keymap('n', '<Up>', '<C-w>k', { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', '<Down>', '<C-w>j', { noremap = true, silent = true })
 
 -- Fuzzy find
-vim.api.nvim_set_keymap('n', '<C-p>', ":Files<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-f>', ":Rg<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>p', ":Files<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f', ":Rg<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-p>", [[<Cmd>lua require('telescope.builtin').find_files()<CR>]], { noremap = true, silent = true })
 
 -- tools
 vim.api.nvim_set_keymap('n', '<F5>', ":NvimTreeToggle<CR>", { noremap = true, silent = true })
@@ -26,7 +27,6 @@ vim.api.nvim_set_keymap('n', 'gr', "<cmd>lua vim.lsp.buf.references()<CR>", { no
 vim.api.nvim_set_keymap('n', 'g0', "<cmd>lua vim.lsp.buf.document_symbol()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gs', "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'rn', "<cmd>lua vim.lsp.buf.rename()<cr>", { noremap = true, silent = true })
-
 
 -- Quickfix mappings
 vim.api.nvim_set_keymap('n', '<leader>n', ":cnext<CR>", { noremap = true, silent = true })

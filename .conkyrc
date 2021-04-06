@@ -12,6 +12,7 @@ conky.config =
   draw_shades = false,
   gap_x = 100,
   gap_y = 80,
+  double_buffer = true,
 }
 conky.text = [[
 $color${font}${font Open Sans:size=44}$alignr${time %H:%M}$font$color${font Open Sans:size=15}

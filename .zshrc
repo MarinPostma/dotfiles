@@ -7,22 +7,16 @@ if [[ $DISPLAY ]]; then
     [[ -z "$TMUX" ]] && exec tmux
 fi
 
-export EDITOR=/usr/bin/nvim
+export EDITOR=nvim
 # If you come from bash you might have to change your $PATH.
+export PATH=/home/mpostma/.cargo/bin:$PATH
 
 export FZF_DEFAULT_COMMAND='fd --type f'
 
 # Path to your oh-my-zsh installation.
-alias http="xh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias vim="nvim"
-alias gs=" git --no-pager log --oneline --decorate -8; git status"
-alias gc="git commit"
-alias msg="git commit -m"
-alias gp="git push"
-alias ls="lsd"
 
 
 ### Added by Zinit's installer
@@ -45,3 +39,11 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light romkatv/powerlevel10k
 
 source $ZSH/oh-my-zsh.sh
+
+alias vim="nvim"
+alias gs=" git --no-pager log --oneline --decorate -8; git status"
+alias gc="git commit"
+alias msg="git commit -m"
+alias gp="git push"
+alias ls="lsd"
+alias http="xh"

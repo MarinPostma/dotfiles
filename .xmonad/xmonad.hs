@@ -5,6 +5,7 @@ import System.Exit
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
+import qualified XMonad.StackSet as W
 
 main = xmonad $ desktopConfig
     { terminal    = "kitty"
@@ -13,9 +14,10 @@ main = xmonad $ desktopConfig
     , layoutHook  = layout
     }
     `additionalKeysP`
-        [ ("M-i", spawn "brave")
+        [ ("M-i", spawnOn  "2" "brave")
+        , ("M-s", spawnOn  "3" "slack")
         , ("M-<Space>", spawn "rofi -show run")
-        , ("M-<Return>", spawn "kitty")
+        , ("M-<Return>", spawnOn  "1" "kitty")
         , ("M-S-q", kill)
         , ("M-S-e", io (exitWith ExitSuccess))
         , ("M-<F1>", spawn "sleep 0.5 && scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'")
@@ -34,3 +36,8 @@ layout = layoutNormal ||| layoutFull
     where
         layoutNormal = (spacing 10 $ noBorders  (gaps [(U,20), (R,20), (L, 20), (D, 20)] $ Tall 1 (3/100) (1/2)))
         layoutFull = noBorders Full
+
+spawnOn :: String -> String -> X ()
+spawnOn workspace program = do
+    spawn program
+    windows $ W.greedyView workspace

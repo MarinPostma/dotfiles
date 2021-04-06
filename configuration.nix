@@ -16,7 +16,9 @@
   boot.loader.grub.useOSProber = true;
   boot.blacklistedKernelModules = [ "i915" ];
 
-
+  virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -63,15 +65,24 @@
   };
 
   # Configure keymap in X11
-  # services.xserver.layout = "us";
+  services.xserver.layout = "us";
   services.xserver.xkbOptions = "caps:swapescape";
 
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "curses";
+  };
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
+  hardware.bluetooth.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -80,7 +91,7 @@
    users.users.mpostma = {
      isNormalUser = true;
      shell = pkgs.zsh;
-     extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "wheel" "video" "docker" ]; # Enable ‘sudo’ for the user.
    };
 
 
@@ -113,23 +124,30 @@
     gnused
     gnutar
     gzip
+    ht-rust
     htop
+    lld
     lsd
     neovim-nightly
     nerdfonts
     oh-my-zsh
     openssl.dev
     patchelf
+    pavucontrol
     pciutils
     picom
     pkgconfig
     ripgrep
     rust-analyzer
     rustup
+    scrot
     tmux
     tree-sitter
+    vagrant
     vim
+    xclip
     xmonad-with-packages
+    xsel
     zsh
   ];
 

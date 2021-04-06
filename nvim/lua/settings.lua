@@ -23,3 +23,5 @@ filetype plugin indent on
 "remove trailing whitespaces"
 autocmd BufWritePre * %s/\s\+$//e
 ]], false);
+
+vim.api.nvim_set_var('indent_blankline_char_list', {"¦"})

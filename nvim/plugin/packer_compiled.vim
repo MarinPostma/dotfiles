@@ -32,17 +32,9 @@ local function try_loadstring(s, component, name)
 end
 
 _G.packer_plugins = {
-  ["auto-pairs"] = {
+  ["compe-tabnine"] = {
     loaded = true,
-    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/auto-pairs"
-  },
-  ["base16-vim"] = {
-    loaded = true,
-    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/base16-vim"
-  },
-  ["completion-nvim"] = {
-    loaded = true,
-    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/completion-nvim"
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/compe-tabnine"
   },
   fzf = {
     loaded = true,
@@ -57,13 +49,45 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
   },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+  },
+  indentLine = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/indentLine"
+  },
   ["lsp_extensions.nvim"] = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
   },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+  },
   nerdcommenter = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/nerdcommenter"
+  },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+  },
+  ["nvim-base16.lua"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/nvim-base16.lua"
+  },
+  ["nvim-bufferline.lua"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
+  },
+  ["nvim-compe"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/nvim-compe"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/nvim-dap"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -80,6 +104,10 @@ _G.packer_plugins = {
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
+  ["oceanic-next"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/oceanic-next"
   },
   ["octo.nvim"] = {
     loaded = true,
@@ -110,10 +138,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
-  ["vim-gitgutter"] = {
-    loaded = true,
-    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-gitgutter"
-  },
   ["vim-polyglot"] = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-polyglot"
@@ -121,6 +145,14 @@ _G.packer_plugins = {
   ["vim-surround"] = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-surround"
+  },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-vsnip"
+  },
+  ["vim-vsnip-integ"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ"
   }
 }
 

@@ -1,8 +1,16 @@
 require'nvim-treesitter.configs'.setup {
-	highlight = {
-		enable = true,              -- false will disable the whole extension
-	},
-	indent = {
-		enable = false,
-	},
+    ensure_installed = {
+        "javascript",
+        "clojure",
+        "html",
+        "css",
+        "bash",
+        "cpp",
+        "rust",
+        "lua"
+    },
+    highlight = {
+        enable = true,
+        use_languagetree = true
+    }
 }
