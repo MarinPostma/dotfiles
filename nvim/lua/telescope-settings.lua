@@ -30,7 +30,6 @@ require('telescope').setup{
     entry_prefix = "  ",
     scroll_strategy = "limit",
     initial_mode = "insert",
-    selection_strategy = "follow",
     sorting_strategy = "descending",
     layout_strategy = "horizontal",
     layout_defaults = {

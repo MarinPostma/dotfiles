@@ -1,5 +1,8 @@
+vim.g.mapleader = " "
+
 vim.api.nvim_set_keymap('n', '<Leader>g', ':G <CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>gc', ':G commit<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>gm', ':G mergetool<CR>', { noremap = true, silent = true })
 
 -- Window movements
 vim.api.nvim_set_keymap('n', '<Right>', '<C-w>l', { noremap = true, silent = true })
@@ -8,8 +11,7 @@ vim.api.nvim_set_keymap('n', '<Up>', '<C-w>k', { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', '<Down>', '<C-w>j', { noremap = true, silent = true })
 
 -- Fuzzy find
-vim.api.nvim_set_keymap('n', '<leader>p', ":Files<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>f', ":Rg<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-f>', ":Rg<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-p>", [[<Cmd>lua require('telescope.builtin').find_files()<CR>]], { noremap = true, silent = true })
 
 -- tools

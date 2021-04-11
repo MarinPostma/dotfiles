@@ -15,6 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
   boot.blacklistedKernelModules = [ "i915" ];
+  boot.kernel.sysctl."kernel.perf_event_paranoid" = 1; # required for perf
 
   virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
@@ -71,7 +72,7 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryFlavor = "curses";
+    pinentryFlavor = "qt";
   };
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -149,6 +150,10 @@
     xmonad-with-packages
     xsel
     zsh
+    rr
+    gdb
+    wget
+    qemu_full
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -22,6 +22,9 @@ main = xmonad $ desktopConfig
         , ("M-S-e", io (exitWith ExitSuccess))
         , ("M-<F1>", spawn "sleep 0.5 && scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'")
         , ("M-S-<Space>", sendMessage NextLayout)
+        , ("<XF86AudioRaiseVolume>", spawn "amixer set 'Master' 5%+")
+        , ("<XF86AudioLowerVolume>", spawn "amixer set 'Master' 5%-")
+        , ("<XF86AudioMute>", spawn "amixer set 'Master' toggle")
         ]
 
 startup = do

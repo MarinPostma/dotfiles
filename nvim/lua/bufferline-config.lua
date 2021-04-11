@@ -55,7 +55,6 @@ require "bufferline".setup {
 
 local opt = {silent = true}
 
-vim.g.mapleader = " "
 
 --command that adds new buffer and moves to it
 vim.api.nvim_command "com -nargs=? -complete=file_in_path New badd <args> | blast"
