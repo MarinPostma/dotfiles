@@ -2,26 +2,32 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
-    ];
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
-  boot.blacklistedKernelModules = [ "i915" ];
   boot.kernel.sysctl."kernel.perf_event_paranoid" = 1; # required for perf
+  boot.blacklistedKernelModules = lib.mkIf (config.networking.hostName == "nixosDesk") ["i915"];
+  boot.extraModprobeConfig = ''
+    options hid_apple fnmode=2 swap_opt_cmd=1
+  '';
+
+  boot.kernelModules = [
+    "i2c_designware_pci"
+    "i2c_designware_platform"
+    "i2c_designware_core"
+    "i2c_dev"
+    "i2c_i801"
+    "xf86-input-libinput"
+  ];
 
   virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableExtensionPack = true;
-  # networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -29,9 +35,8 @@
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.eno1.useDHCP = true;
-
+  networking.dhcpcd.enable = true;
+  networking.dhcpcd.allowInterfaces = ["en*" "wlp*"];
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -47,16 +52,21 @@
   services.xserver = {
     enable = true;
     displayManager.lightdm.enable = true;
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = lib.mkIf (config.networking.hostName == "nixosDesk") ["nvidia"];
     desktopManager.xterm.enable = false;
-    windowManager.xmonad.enable = true;
-    displayManager.defaultSession = "none+xmonad";
     libinput.mouse.accelSpeed = "-1.0";
     libinput.mouse.accelProfile = "flat";
+    layout = "us";
+    xkbOptions = "caps:swapescape";
+    displayManager.defaultSession = "none+xmonad";
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+    };
+    synaptics.enable = true;
   };
 
-
- # Enable zsh
+  # Enable zsh
   programs.zsh.enable = true;
 
   # Enable Oh-my-zsh
@@ -66,8 +76,6 @@
   };
 
   # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:swapescape";
 
   programs.gnupg.agent = {
     enable = true;
@@ -147,13 +155,14 @@
     vagrant
     vim
     xclip
-    xmonad-with-packages
     xsel
     zsh
     rr
     gdb
     wget
     qemu_full
+    rofi
+    kitty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
