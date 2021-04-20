@@ -5,12 +5,14 @@ import System.Exit
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
+import XMonad.Actions.SpawnOn
 import qualified XMonad.StackSet as W
 
 main = xmonad $ desktopConfig
     { terminal    = "kitty"
     , modMask     = mod4Mask
     , startupHook = startup
+    , manageHook = manageSpawn <+> manageHook def
     , layoutHook  = layout
     }
     `additionalKeysP`
@@ -35,12 +37,8 @@ startup = do
     spawn "picom"
     spawn "conky -d"
 
-layout = layoutNormal ||| layoutFull
+layout = layoutGaps ||| layoutNormal ||| layoutFull
     where
-        layoutNormal = (spacing 10 $ noBorders  (gaps [(U,20), (R,20), (L, 20), (D, 20)] $ Tall 1 (3/100) (1/2)))
+        layoutGaps = (spacingRaw True (Border 0 10 10 10) True (Border 10 10 10 10) True $ noBorders  (gaps [(U,20), (R,20), (L, 20), (D, 20)] $ Tall 1 (3/100) (1/2)))
         layoutFull = noBorders Full
-
-spawnOn :: String -> String -> X ()
-spawnOn workspace program = do
-    spawn program
-    windows $ W.greedyView workspace
+        layoutNormal = noBorders (Tall 1 (3/100) (1/2))

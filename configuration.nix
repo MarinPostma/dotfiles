@@ -49,6 +49,8 @@
   # };
 
   # Enable the X11 windowing system.
+  programs.light.enable = true;
+
   services.xserver = {
     enable = true;
     displayManager.lightdm.enable = true;
@@ -123,9 +125,11 @@
     fd
     feh
     findutils
+    fuse
     fzf
     gawk
     gcc
+    gdb
     git
     github-cli
     gnugrep
@@ -135,10 +139,12 @@
     gzip
     ht-rust
     htop
+    kitty
     lld
     lsd
     neovim-nightly
     nerdfonts
+    ntfs3g
     oh-my-zsh
     openssl.dev
     patchelf
@@ -146,7 +152,10 @@
     pciutils
     picom
     pkgconfig
+    qemu_full
     ripgrep
+    rofi
+    rr
     rust-analyzer
     rustup
     scrot
@@ -154,15 +163,11 @@
     tree-sitter
     vagrant
     vim
+    wget
     xclip
     xsel
+    zathura
     zsh
-    rr
-    gdb
-    wget
-    qemu_full
-    rofi
-    kitty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

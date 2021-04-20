@@ -15,7 +15,7 @@ vim.api.nvim_set_keymap('n', '<C-f>', ":Rg<cr>", { noremap = true, silent = true
 vim.api.nvim_set_keymap("n", "<C-p>", [[<Cmd>lua require('telescope.builtin').find_files()<CR>]], { noremap = true, silent = true })
 
 -- tools
-vim.api.nvim_set_keymap('n', '<F5>', ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fs', ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 -- lsp mappings
 vim.api.nvim_set_keymap('n', 'gd', "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })

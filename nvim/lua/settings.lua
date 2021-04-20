@@ -1,5 +1,7 @@
--- theme
-vim.cmd('colorscheme OceanicNext')
+local base16 = require "base16"
+base16(base16.themes["gruvbox-dark-hard"], true)
+
+vim.api.nvim_set_keymap('n', '<Leader>nt', ":lua cycle_theme() <CR>", { noremap = true, silent = true })
 
 vim.o.termguicolors = true
 vim.o.clipboard = 'unnamedplus'
@@ -25,3 +27,10 @@ autocmd BufWritePre * %s/\s\+$//e
 ]], false);
 
 vim.api.nvim_set_var('indent_blankline_char_list', {"¦"})
+
+vim.api.nvim_exec([[
+au BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7
+
+let g:vim_markdown_no_extensions_in_markdown = 1
+]], false)
+

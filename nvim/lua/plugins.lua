@@ -55,4 +55,6 @@ return require('packer').startup(function()
 	use 'akinsho/nvim-bufferline.lua'
 	use 'hrsh7th/vim-vsnip'
 	use 'hrsh7th/vim-vsnip-integ'
+	use 'ARM9/arm-syntax-vim'
+	use 'plasticboy/vim-markdown'
 end)

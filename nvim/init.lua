@@ -15,3 +15,4 @@ require("lspkind").init(
     }
 )
 require('nvim-autopairs').setup()
+
