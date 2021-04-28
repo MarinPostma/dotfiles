@@ -1,4 +1,5 @@
 vim.cmd [[packadd packer.nvim]]
+--vim.cmd [[packadd packer.vimspector]]
 return require('packer').startup(function()
 	use {'wbthomason/packer.nvim', opt = true}
 	use {
@@ -27,7 +28,6 @@ return require('packer').startup(function()
 	use 'tpope/vim-surround'
 	use 'voldikss/vim-floaterm'
 	use 'preservim/nerdcommenter'
-	use 'sheerun/vim-polyglot'
 	use 'onsails/lspkind-nvim'
 	use {
 		'pwntester/octo.nvim',
@@ -51,10 +51,14 @@ return require('packer').startup(function()
 		requires = {
 			'nvim-lua/plenary.nvim'
 		}
-}
+	}
 	use 'akinsho/nvim-bufferline.lua'
 	use 'hrsh7th/vim-vsnip'
 	use 'hrsh7th/vim-vsnip-integ'
 	use 'ARM9/arm-syntax-vim'
-	use 'plasticboy/vim-markdown'
+	use 'rust-lang/rust.vim'
+	use 'ayu-theme/ayu-vim'
+	use "ray-x/lsp_signature.nvim"
+	use 'mhinz/vim-startify'
+	use 'puremourning/vimspector'
 end)

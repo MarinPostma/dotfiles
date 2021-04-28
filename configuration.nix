@@ -5,6 +5,9 @@
 { config, pkgs, lib, ... }:
 
 {
+	imports = [
+		(import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
+	];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -47,10 +50,14 @@
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
   # };
+  #
+
+  fonts.fonts = with pkgs; [
+    nerdfonts
+  ];
 
   # Enable the X11 windowing system.
   programs.light.enable = true;
-
   services.xserver = {
     enable = true;
     displayManager.lightdm.enable = true;
@@ -108,20 +115,29 @@
 
    nixpkgs = {
      config.allowUnfree = true;
-     overlays = [
-       (import (builtins.fetchTarball {
-         url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-       }))
-     ];
    };
+
+   home-manager.users.mpostma = {
+	nixpkgs.overlays = [ (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    })) ];
+   	programs.neovim = {
+		enable = true;
+		withPython3 = true;
+	};
+   };
+
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    arandr
     binutils-unwrapped
     brave
     clang
     conky
     coreutils
+    discord
     fd
     feh
     findutils
@@ -139,11 +155,10 @@
     gzip
     ht-rust
     htop
+    killall
     kitty
     lld
     lsd
-    neovim-nightly
-    nerdfonts
     ntfs3g
     oh-my-zsh
     openssl.dev
@@ -152,6 +167,8 @@
     pciutils
     picom
     pkgconfig
+    python39
+    python39Packages.pynvim
     qemu_full
     ripgrep
     rofi
@@ -168,7 +185,9 @@
     xsel
     zathura
     zsh
+    slack
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -15,4 +15,4 @@ require("lspkind").init(
     }
 )
 require('nvim-autopairs').setup()
-
+require'lsp_signature'.on_attach()

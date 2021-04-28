@@ -1,5 +1,5 @@
-local base16 = require "base16"
-base16(base16.themes["gruvbox-dark-hard"], true)
+--local base16 = require "base16"
+--base16(base16.themes["gruvbox-dark-hard"], true)
 
 vim.api.nvim_set_keymap('n', '<Leader>nt', ":lua cycle_theme() <CR>", { noremap = true, silent = true })
 
@@ -24,6 +24,9 @@ syntax enable
 filetype plugin indent on
 "remove trailing whitespaces"
 autocmd BufWritePre * %s/\s\+$//e
+
+let ayucolor="dark"
+colorscheme ayu
 ]], false);
 
 vim.api.nvim_set_var('indent_blankline_char_list', {"¦"})
