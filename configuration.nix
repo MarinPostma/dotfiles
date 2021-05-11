@@ -186,6 +186,7 @@
     zathura
     zsh
     slack
+    spotify
   ];
 
 

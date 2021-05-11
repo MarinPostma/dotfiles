@@ -12,7 +12,7 @@ main = xmonad $ desktopConfig
     { terminal    = "kitty"
     , modMask     = mod4Mask
     , startupHook = startup
-    , manageHook = manageSpawn <+> manageHook def
+    , manageHook = myManageHook
     , layoutHook  = layout
     }
     `additionalKeysP`
@@ -22,16 +22,25 @@ main = xmonad $ desktopConfig
         , ("M-<Return>", spawnOn  "1" "kitty")
         , ("M-S-q", kill)
         , ("M-S-e", io (exitWith ExitSuccess))
-        , ("M-<F1>", spawn "sleep 0.5 && scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'")
+        , ("M-S-s", spawn "sleep 0.5 && scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'")
         , ("M-S-<Space>", sendMessage NextLayout)
         , ("<XF86AudioRaiseVolume>", spawn "amixer set 'Master' 5%+")
         , ("<XF86AudioLowerVolume>", spawn "amixer set 'Master' 5%-")
         , ("<XF86AudioMute>", spawn "amixer set 'Master' toggle")
+        , ("M-v", spawn "pamixer -d 5")
+        , ("M-S-v", spawn "pamixer -i 5")
+        , ("M-l", spawn "backlight dec 10")
+        , ("M-S-l", spawn "backlight inc 10")
         ]
+
+myManageHook = composeAll
+    [ className =? "Devbook" --> doFloat ]
+    <+> manageSpawn <+> manageHook def
 
 startup = do
     spawn "xinput --set-prop 'Logitech G502 HERO Gaming Mouse' 'Device Accel Constant Deceleration' 2.5"
     spawn "xinput set-button-map 'ETPS/2 Elantech Touchpad' 1 1 3"
+    spawn "setxkbmap -option caps:swapescape"
     spawn "xset r rate 180 60"
     spawn "feh --bg-scale /home/mpostma/Pictures/wallpaper.jpg"
     spawn "picom"

@@ -25,11 +25,26 @@ filetype plugin indent on
 "remove trailing whitespaces"
 autocmd BufWritePre * %s/\s\+$//e
 
-let ayucolor="dark"
-colorscheme ayu
+colorscheme nightfly
+let g:nightflyNormalFloat = 1
+let g:nightflyUnderlineMatchParen = 1
 ]], false);
 
 vim.api.nvim_set_var('indent_blankline_char_list', {"¦"})
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+vim.lsp.handlers.hover, {
+	border = {
+		{'┌', 'FloatBorder'},
+		{'─', 'FloatBorder'},
+		{'┐', 'FloatBorder'},
+		{'│', 'FloatBorder'},
+		{'┘', 'FloatBorder'},
+		{'─', 'FloatBorder'},
+		{'└', 'FloatBorder'},
+		{'│', 'FloatBorder'}
+	}
+}
+)
 
 vim.api.nvim_exec([[
 au BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7

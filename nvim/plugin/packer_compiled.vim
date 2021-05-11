@@ -47,8 +47,8 @@ local function save_profiles(threshold)
 end
 
 time("Luarocks path setup", true)
-local package_path_str = "/home/mpostma/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/mpostma/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/mpostma/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/mpostma/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/mpostma/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/mpostma/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?.lua;/home/mpostma/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?/init.lua;/home/mpostma/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?.lua;/home/mpostma/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/mpostma/.cache/nvim/packer_hererocks/2.0.5/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -75,6 +75,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/arm-syntax-vim"
   },
+  ["ayu-vim"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/ayu-vim"
+  },
   fzf = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/fzf"
@@ -84,7 +88,7 @@ _G.packer_plugins = {
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/fzf.vim"
   },
   ["galaxyline.nvim"] = {
-    config = { "\27LJ\2\n3\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\24galaxyline-settings\frequire\0" },
+    config = { "\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24galaxyline-settings\frequire\0" },
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
   },
@@ -103,6 +107,10 @@ _G.packer_plugins = {
   ["lsp_extensions.nvim"] = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
@@ -169,6 +177,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
+  ["rust.vim"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/rust.vim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/telescope.nvim"
@@ -181,13 +193,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
-  ["vim-markdown"] = {
+  ["vim-startify"] = {
     loaded = true,
-    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-markdown"
-  },
-  ["vim-polyglot"] = {
-    loaded = true,
-    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-polyglot"
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-startify"
   },
   ["vim-surround"] = {
     loaded = true,
@@ -200,13 +208,17 @@ _G.packer_plugins = {
   ["vim-vsnip-integ"] = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ"
+  },
+  vimspector = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vimspector"
   }
 }
 
 time("Defining packer_plugins", false)
 -- Config for: galaxyline.nvim
 time("Config for galaxyline.nvim", true)
-try_loadstring("\27LJ\2\n3\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\24galaxyline-settings\frequire\0", "config", "galaxyline.nvim")
+try_loadstring("\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24galaxyline-settings\frequire\0", "config", "galaxyline.nvim")
 time("Config for galaxyline.nvim", false)
 if should_profile then save_profiles() end
 

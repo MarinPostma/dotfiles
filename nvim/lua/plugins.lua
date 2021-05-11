@@ -1,5 +1,5 @@
 vim.cmd [[packadd packer.nvim]]
---vim.cmd [[packadd packer.vimspector]]
+vim.cmd [[packadd vimspector]]
 return require('packer').startup(function()
 	use {'wbthomason/packer.nvim', opt = true}
 	use {
@@ -61,4 +61,5 @@ return require('packer').startup(function()
 	use "ray-x/lsp_signature.nvim"
 	use 'mhinz/vim-startify'
 	use 'puremourning/vimspector'
+	use 'bluz71/vim-nightfly-guicolors'
 end)
