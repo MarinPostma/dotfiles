@@ -28,6 +28,8 @@ autocmd BufWritePre * %s/\s\+$//e
 colorscheme nightfly
 let g:nightflyNormalFloat = 1
 let g:nightflyUnderlineMatchParen = 1
+
+let g:scrollfix=50
 ]], false);
 
 vim.api.nvim_set_var('indent_blankline_char_list', {"¦"})

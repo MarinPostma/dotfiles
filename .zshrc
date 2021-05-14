@@ -123,7 +123,7 @@ if [[ $DISPLAY ]]; then
     [[ -z "$TMUX" ]] && exec tmux
 fi
 
-export editor=nvim
+export EDITOR=nvim
 export GPG_TTY=$(tty)
 export PATH=/home/mpostma/.cargo/bin:$PATH
 export FZF_DEFAULT_COMMAND='fd --type f'

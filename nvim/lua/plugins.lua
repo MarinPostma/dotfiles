@@ -62,4 +62,5 @@ return require('packer').startup(function()
 	use 'mhinz/vim-startify'
 	use 'puremourning/vimspector'
 	use 'bluz71/vim-nightfly-guicolors'
+	use 'vim-scripts/scrollfix'
 end)
