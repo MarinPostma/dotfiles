@@ -5,7 +5,7 @@ autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 ]], false)
 
 vim.o.completeopt = "menu,menuone,noselect"
-vim.o.updatetime=300
+vim.o.updatetime=1000
 
 -- nvim_lsp object
 local nvim_lsp = require'lspconfig'

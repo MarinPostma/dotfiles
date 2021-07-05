@@ -40,3 +40,4 @@ vim.api.nvim_set_keymap('n', '<leader>ss', ":%s/", { noremap = true, silent = fa
 -- toggle floatingh terminal
 vim.api.nvim_set_keymap('n', '<leader>tt', ":FloatermToggle<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('t', '<leader>tt', "<C-\\><C-n>:FloatermToggle<CR>", { noremap = true, silent = true })
+

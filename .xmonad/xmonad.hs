@@ -41,7 +41,6 @@ myManageHook = composeAll
 startup = do
     spawn "xinput --set-prop 'Logitech G502 HERO Gaming Mouse' 'Device Accel Constant Deceleration' 2.5"
     spawn "xinput set-button-map 'ETPS/2 Elantech Touchpad' 1 1 3"
-    spawn "setxkbmap -option caps:swapescape"
     spawn "xset r rate 180 60"
     spawn "feh --bg-scale /home/mpostma/Pictures/wallpaper.jpg"
     spawn "picom"

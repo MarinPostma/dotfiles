@@ -2,7 +2,7 @@
 all: install dotfiles
 
 install: packages
-	yay -Sy - < packages
+	cat packages | yay -S -
 
 dotfiles:
 	mkdir -p ~/.config

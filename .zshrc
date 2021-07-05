@@ -125,7 +125,7 @@ fi
 
 export EDITOR=nvim
 export GPG_TTY=$(tty)
-export PATH=/home/mpostma/.cargo/bin:$PATH
+export PATH=/home/mpostma/.cargo/bin:/home/mpostma/.local/bin/:$PATH
 export FZF_DEFAULT_COMMAND='fd --type f'
 
 alias vim="nvim"
@@ -138,3 +138,4 @@ alias find=fd
 alias grep=rg
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source ~/powerlevel10k/powerlevel10k.zsh-theme

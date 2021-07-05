@@ -181,6 +181,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/rust.vim"
   },
+  scrollfix = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/scrollfix"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/telescope.nvim"
@@ -192,6 +196,10 @@ _G.packer_plugins = {
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+  },
+  ["vim-nightfly-guicolors"] = {
+    loaded = true,
+    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors"
   },
   ["vim-startify"] = {
     loaded = true,
@@ -208,10 +216,6 @@ _G.packer_plugins = {
   ["vim-vsnip-integ"] = {
     loaded = true,
     path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ"
-  },
-  vimspector = {
-    loaded = true,
-    path = "/home/mpostma/.local/share/nvim/site/pack/packer/start/vimspector"
   }
 }
 
