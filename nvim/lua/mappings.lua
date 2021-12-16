@@ -1,8 +1,7 @@
 vim.g.mapleader = " "
 
-vim.api.nvim_set_keymap('n', '<Leader>g', ':G <CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>gc', ':G commit<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>gm', ':G mergetool<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>g', ':Neogit<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>gm', ':MergetoolToggle<CR>', { noremap = true, silent = true })
 
 -- Window movements
 vim.api.nvim_set_keymap('n', '<Right>', '<C-w>l', { noremap = true, silent = true })
@@ -28,7 +27,7 @@ vim.api.nvim_set_keymap('n', '1gD', "<cmd>lua vim.lsp.buf.type_definition()<CR>"
 vim.api.nvim_set_keymap('n', 'gr', "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'g0', "<cmd>lua vim.lsp.buf.document_symbol()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gs', "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'rn', "<cmd>lua vim.lsp.buf.rename()<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'grn', "<cmd>lua vim.lsp.buf.rename()<cr>", { noremap = true, silent = true })
 
 -- Quickfix mappings
 vim.api.nvim_set_keymap('n', '<leader>n', ":cnext<CR>", { noremap = true, silent = true })
