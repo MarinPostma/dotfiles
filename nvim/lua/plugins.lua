@@ -23,6 +23,19 @@ return require('packer').startup(function(use)
 	use 'guns/vim-sexp'
 	use 'tpope/vim-sexp-mappings-for-regular-people'
 	-- Theming
+	use({
+		'noib3/nvim-cokeline',
+		requires = 'kyazdani42/nvim-web-devicons', -- If you want devicons
+		config = function()
+			require('cokeline').setup {
+				default_hl = {
+					focused = {
+						bg = "#565266",
+					}
+				}
+			}
+		end
+	})
 	use {
 		'hoob3rt/lualine.nvim',
 		config = function()
@@ -34,7 +47,10 @@ return require('packer').startup(function(use)
 
 		end
 	}
-	use 'junegunn/fzf.vim'
+	use {
+		'junegunn/fzf.vim',
+		requires = 'junegunn/fzf'
+	}
 	use {
 		'kyazdani42/nvim-tree.lua',
 		after = 'circles.nvim',

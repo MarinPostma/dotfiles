@@ -9,10 +9,11 @@ fi
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/mpostma/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=nvim
 export XDG_CONFIG_HOME=$HOME/.config
 export FZF_DEFAULT_COMMAND='fd --type f'
+export GPG_TTY=$(tty)
 
 alias grep=rg
 alias ls=lsd
@@ -120,4 +121,3 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # export TERM=tmux-256color
-[ -f "/home/mpostma/.ghcup/env" ] && source "/home/mpostma/.ghcup/env" # ghcup-env

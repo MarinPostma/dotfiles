@@ -44,4 +44,6 @@ vim.diagnostic.config({
 
 nvim_lsp.hls.setup { handlers=handlers }
 nvim_lsp.clojure_lsp.setup {}
+nvim_lsp.clangd.setup{}
+nvim_lsp.pylsp.setup {}
 
