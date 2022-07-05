@@ -5,9 +5,23 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
+	use 'nvim-telescope/telescope.nvim'
 	use 'wbthomason/packer.nvim'
-
+	use {
+		'liuchengxu/vista.vim',
+		config = function()
+			vim.api.nvim_set_var("vista_default_executive", "nvim_lsp")
+		end
+	}
+	use  { 'mfussenegger/nvim-dap', }
+	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 	-- languages
+	use {
+		"vigoux/LanguageTool.nvim",
+		config = function()
+			vim.api.nvim_set_var("languagetool_server", "/opt/homebrew/Cellar/languagetool/5.6/libexec/languagetool-commandline.jar")
+		end
+	}
 	use {
 		'rust-lang/rust.vim',
 		config = function()
@@ -100,7 +114,16 @@ return require('packer').startup(function(use)
 		'simrat39/rust-tools.nvim',
 		requires = {'neovim/nvim-lspconfig'},
 		config = function()
-			require'rust-tools'.setup { }
+			require'rust-tools'.setup {
+				-- debugging stuff
+				dap = {
+					adapter = {
+						type = 'executable',
+						command = '/opt/homebrew/opt/llvm/bin/lldb-vscode',
+						name = "rt_lldb"
+					}
+				}
+			}
 		end
 	}
 	use {

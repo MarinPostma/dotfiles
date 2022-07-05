@@ -21,6 +21,7 @@ syntax enable
 filetype plugin indent on
 "remove trailing whitespaces"
 autocmd BufWritePre * %s/\s\+$//e
+autocmd FileType typescript setlocal ts=4 sts=4 sw=4
 au BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7
 set termguicolors
 set grepprg=rg\ --vimgrep
