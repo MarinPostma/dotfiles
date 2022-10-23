@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=/Users/mpostma/.sg:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
+export PATH=/Users/mpostma/.sg:$HOME/bin:/usr/local/bin:$HOME/.local/bin:/opt/homebrew/opt/llvm/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -125,3 +125,7 @@ source $ZSH/oh-my-zsh.sh
 #
 export CPATH=/opt/homebrew/include
 export LIBRARY_PATH=/opt/homebrew/lib
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"

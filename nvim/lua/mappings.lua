@@ -1,3 +1,5 @@
+local vimp = require('vimp')
+
 vim.g.mapleader = " "
 
 vim.api.nvim_set_keymap('n', '<Leader>g', ':Neogit<CR>', { noremap = true, silent = true })
@@ -47,3 +49,13 @@ vim.api.nvim_set_keymap('t', '<leader>tt', "<C-\\><C-n>:FloatermToggle<CR>", { n
 
 -- git
 vim.api.nvim_set_keymap('n', '<leader>bl', ":Gitsigns blame_line<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>cf', ":GitConflictListQf<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gco', ":GitConflictChooseOurs<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gct', ":GitConflictChooseTheirs<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd("OptionSet", {
+	pattern = "background",
+	callback = function()
+		vim.cmd("Catppuccin " .. (vim.v.option_new == "light" and "latte" or "mocha"))
+	end,
+})
