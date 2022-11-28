@@ -1,8 +1,6 @@
-local vimp = require('vimp')
-
 vim.g.mapleader = " "
 
-vim.api.nvim_set_keymap('n', '<Leader>g', ':Neogit<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>g', ':lua require("neogit").open()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>gm', ':MergetoolToggle<CR>', { noremap = true, silent = true })
 
 -- Window movements
@@ -28,7 +26,7 @@ vim.api.nvim_set_keymap('n', '<c-k>', "<cmd>lua vim.lsp.buf.signature_help()<CR>
 vim.api.nvim_set_keymap('n', '1gD', "<cmd>lua vim.lsp.buf.type_definition()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'g0', "<cmd>lua vim.lsp.buf.document_symbol()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gs', "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gre', "<cmd>lua require('telescope.builtin').lsp_references()<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gre', "<cmd>lua vim.lsp.buf.references()<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'grn', "<cmd>lua vim.lsp.buf.rename()<cr>", { noremap = true, silent = true })
 
 -- Vista mappings
@@ -52,10 +50,3 @@ vim.api.nvim_set_keymap('n', '<leader>bl', ":Gitsigns blame_line<CR>", { noremap
 vim.api.nvim_set_keymap('n', '<leader>cf', ":GitConflictListQf<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gco', ":GitConflictChooseOurs<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gct', ":GitConflictChooseTheirs<CR>", { noremap = true, silent = true })
-
-vim.api.nvim_create_autocmd("OptionSet", {
-	pattern = "background",
-	callback = function()
-		vim.cmd("Catppuccin " .. (vim.v.option_new == "light" and "latte" or "mocha"))
-	end,
-})

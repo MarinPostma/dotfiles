@@ -89,7 +89,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting rust)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -129,3 +129,4 @@ export LIBRARY_PATH=/opt/homebrew/lib
 export WASMTIME_HOME="$HOME/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
+ctags=/opt/homebrew/bin/ctags

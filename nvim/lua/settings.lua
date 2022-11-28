@@ -13,6 +13,7 @@ vim.o.gdefault = true
 vim.o.hidden = true
 
 vim.g.floaterm_keymap_toggle = '<F12>'
+vim.g.rustfmt_autosave = true
 
 vim.api.nvim_exec([[
 syntax enable
@@ -26,4 +27,5 @@ autocmd FileType typescript setlocal ts=4 sts=4 sw=4
 au BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7
 set termguicolors
 set grepprg=rg\ --vimgrep
+set mouse=
 ]], false);
