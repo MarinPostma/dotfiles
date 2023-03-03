@@ -84,7 +84,7 @@ lsp.clangd.setup{
 lsp.tsserver.setup{
     capabilities = capabilities,
 }
-
 lsp.clojure_lsp.setup{
     capabilities = capabilities
 }
+lsp.pyright.setup{}

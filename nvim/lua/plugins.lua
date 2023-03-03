@@ -15,7 +15,7 @@ return require('packer').startup(function(use)
         as = "catppuccin",
         config = function()
             require("catppuccin").setup {
-                flavour = "mocha" -- mocha, macchiato, frappe, latte
+                flavour = "macchiato" -- mocha, macchiato, frappe, latte
             }
             vim.api.nvim_command "colorscheme catppuccin"
         end
@@ -81,4 +81,5 @@ return require('packer').startup(function(use)
 
     }
     use { 'terrortylor/nvim-comment', config = function() require'nvim_comment'.setup{} end }
+    -- use 'Olical/conjure'
 end)

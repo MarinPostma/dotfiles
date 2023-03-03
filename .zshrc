@@ -22,6 +22,7 @@ alias http=xh
 alias vim=nvim
 alias gs='git --no-pager log --oneline -n10 && git status'
 alias cat=bat
+alias gane='git commit -a --amend --no-edit'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -130,3 +131,11 @@ export WASMTIME_HOME="$HOME/.wasmtime"
 
 export PATH="$WASMTIME_HOME/bin:$PATH"
 ctags=/opt/homebrew/bin/ctags
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/icu4c/lib/pkgconfig"
+export CFLAGS=" -I/usr/local/include"
+export LDFLAGS=" -L/usr/local/lib"
+export PATH="/Users/mpostma/pg15/bin:$PATH"
+export PATH="/Users/mpostma/pg15/bin:$PATH"
+export PATH="/Users/mpostma/pg15/bin:$PATH"
+export PATH="/Users/mpostma/pg15/bin:$PATH"
+export PATH="/Users/mpostma/pg15/bin:$PATH"
