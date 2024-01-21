@@ -7,6 +7,11 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=/Users/mpostma/.sg:$HOME/bin:/usr/local/bin:$HOME/.local/bin:/opt/homebrew/opt/llvm/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+
+if [[ $(uname) -eq "Darwin" ]]; then 
+    PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -20,9 +25,13 @@ alias grep=rg
 alias ls=lsd
 alias http=xh
 alias vim=nvim
+alias vi=nvim
 alias gs='git --no-pager log --oneline -n10 && git status'
 alias cat=bat
 alias gane='git commit -a --amend --no-edit'
+alias cr='cargo run'
+alias crr='cargo run --release'
+alias ct='cargo test'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -90,7 +99,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting rust)
+plugins=(git zsh-syntax-highlighting rust fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,8 +143,12 @@ ctags=/opt/homebrew/bin/ctags
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/icu4c/lib/pkgconfig"
 export CFLAGS=" -I/usr/local/include"
 export LDFLAGS=" -L/usr/local/lib"
-export PATH="/Users/mpostma/pg15/bin:$PATH"
-export PATH="/Users/mpostma/pg15/bin:$PATH"
-export PATH="/Users/mpostma/pg15/bin:$PATH"
-export PATH="/Users/mpostma/pg15/bin:$PATH"
-export PATH="/Users/mpostma/pg15/bin:$PATH"
+export PATH="$PATH:/Users/mpostma/Library/Application Support/Coursier/bin"
+
+# nvm crap
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# end of nvm crap
+
+[ -f "/Users/mpostma/.ghcup/env" ] && source "/Users/mpostma/.ghcup/env" # ghcup-env
