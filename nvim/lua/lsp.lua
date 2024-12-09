@@ -1,8 +1,10 @@
-local rt = require("rust-tools")
 local cmp = require('cmp')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp = require'lspconfig';
-require 'lsp_signature'.setup{}
+
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+vim.lsp.inlay_hint.enable(true)
 
 cmp.setup({
     snippet = {
@@ -56,46 +58,66 @@ cmp.setup.cmdline(':', {
         })
 })
 
--- setup rust tools
-rt.setup({
-    reload_workspace_from_cargo_toml = true,
-    server = {
-        on_attach = function(_, bufnr)
-            vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
-        end,
-        settings = {
-            ["rust-analyzer"] = {
-                assist = {
-                    importMergeBehavior = "last",
-                    importPrefix = "by_self",
-                },
-                cargo = {
-                    loadOutDirsFromCheck = true,
-                    allFeatures = true
-                },
-                procMacro = {
-                    enable = true
-                },
-            }
-        },
-        capabilities = capabilities,
-    },
-})
-
+local bufnr = vim.api.nvim_get_current_buf()
+vim.keymap.set(
+  "n", 
+  "ga", 
+  function()
+    vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
+  end,
+  { silent = true, buffer = bufnr }
+)
 -- setup clangd
 lsp.clangd.setup{
     capabilities = capabilities,
 }
 
--- setup ts lsp
-lsp.tsserver.setup{
-    capabilities = capabilities,
-}
 lsp.clojure_lsp.setup{
     capabilities = capabilities
 }
-lsp.pyright.setup{}
+lsp.pyright.setup{
+    capabilities = capabilities,
+    python = {
+        analysis = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = "workspace"
+        },
+        venvPath = ".venv",
+        pythonPath = vim.fn.exepath("poetry") .. " run python"
+    }
+}
 lsp.zls.setup {}
+lsp.gopls.setup{}
+lsp.ts_ls.setup{}
+
+lsp.emmet_ls.setup({
+    -- on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
+    init_options = {
+      html = {
+        options = {
+          -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+          ["bem.enabled"] = true,
+        },
+      },
+    }
+})
+
+vim.g.rustaceanvim = {
+    -- LSP configuration
+    server = {
+        default_settings = {
+            -- rust-analyzer language server configuration
+            ['rust-analyzer'] = {
+                rustc = {
+                    source = "discover"
+                }
+            },
+        },
+    },
+}
 
 -- Function to check if a floating dialog exists and if not
 -- then check for diagnostics under the cursor

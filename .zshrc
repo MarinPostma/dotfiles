@@ -5,6 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source ~/.env.anthropic
+
 # If you come from bash you might have to change your $PATH.
 export PATH=/Users/mpostma/.sg:$HOME/bin:/usr/local/bin:$HOME/.local/bin:/opt/homebrew/opt/llvm/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
@@ -32,6 +34,12 @@ alias gane='git commit -a --amend --no-edit'
 alias cr='cargo run'
 alias crr='cargo run --release'
 alias ct='cargo test'
+alias gwa='git worktree add'
+alias gwr='git worktree remove'
+alias gwl='git worktree list'
+alias gw='git worktree'
+alias gwc='git worktree list | fzf -m | awk '{print $1}' | xargs -I _ git worktree remove -f _'
+alias py=python3
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -152,3 +160,6 @@ export NVM_DIR="$HOME/.nvm"
 # end of nvm crap
 
 [ -f "/Users/mpostma/.ghcup/env" ] && source "/Users/mpostma/.ghcup/env" # ghcup-env
+
+export PATH=/Users/mpostma/.tiup/bin:$PATH
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
