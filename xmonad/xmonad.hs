@@ -9,7 +9,7 @@ import XMonad.Actions.SpawnOn
 import qualified XMonad.StackSet as W
 
 main = xmonad $ desktopConfig
-    { terminal    = "kitty"
+    { terminal    = "alacritty"
     , modMask     = mod4Mask
     , startupHook = startup
     , manageHook = myManageHook
@@ -17,9 +17,7 @@ main = xmonad $ desktopConfig
     }
     `additionalKeysP`
         [ ("M-i", spawnOn  "2" "brave")
-        , ("M-s", spawnOn  "3" "slack")
         , ("M-<Space>", spawn "rofi -show run")
-        , ("M-<Return>", spawnOn  "1" "kitty")
         , ("M-S-q", kill)
         , ("M-S-e", io (exitWith ExitSuccess))
         , ("M-S-s", spawn "sleep 0.5 && scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'")
@@ -28,10 +26,6 @@ main = xmonad $ desktopConfig
 	, ("<XF86AudioPlay>", spawn "mpc play")
 	, ("<XF86AudioNext>", spawn "mpc next")
 	, ("<XF86AudioPrev>", spawn "mpc prev")
-        , ("M-v", spawn "pamixer -d 5")
-        , ("M-S-v", spawn "pamixer -i 5")
-        , ("M-l", spawn "backlight dec 10")
-        , ("M-S-l", spawn "backlight inc 10")
         ]
 
 myManageHook = composeAll

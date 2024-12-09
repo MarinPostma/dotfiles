@@ -39,7 +39,24 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "xmonad-contexts": "xmonad-contexts"
+      }
+    },
+    "xmonad-contexts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656278379,
+        "narHash": "sha256-8mUFsKF/uW3+DkmK5vwTF+IfWzPupcms/C3EHSEAWnU=",
+        "owner": "Procrat",
+        "repo": "xmonad-contexts",
+        "rev": "d0de588e4d47e124cca788f0961821053fdbf646",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Procrat",
+        "repo": "xmonad-contexts",
+        "type": "github"
       }
     }
   },

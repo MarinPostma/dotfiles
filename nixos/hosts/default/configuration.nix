@@ -8,6 +8,7 @@
     imports =
         [ # Include the results of the hardware scan.
             ./hardware-configuration.nix
+            ./../../modules/wm/xmonad/default.nix
             inputs.home-manager.nixosModules.default
         ];
 
@@ -30,6 +31,20 @@
             "adhoc" = import ./home.nix;
         };
     };
+
+    services.greetd = {
+        enable = true;
+        settings = {
+            default_session = {
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startx";
+                user = "greeter";
+            };
+        };
+    };
+
+    programs.xmonad.enable = true;
+
+    security.polkit.enable = true;
 
     # Bootloader.
     boot.loader.systemd-boot.enable = true;
@@ -74,8 +89,8 @@
     # services.displayManager.sddm.enable = true;
     # services.desktopManager.plasma6.enable = true;
 
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
+    # services.xserver.displayManager.gdm.enable = true;
+    # services.xserver.desktopManager.gnome.enable = true;
 
     # Configure keymap in X11
     services.xserver.xkb = {
