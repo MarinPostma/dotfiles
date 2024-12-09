@@ -8,7 +8,6 @@
     imports =
         [ # Include the results of the hardware scan.
             ./hardware-configuration.nix
-            ./../../modules/wm/xmonad/default.nix
             inputs.home-manager.nixosModules.default
         ];
 
@@ -22,6 +21,8 @@
 
     hardware.nvidia = {
         modesetting.enable = true;
+        powerManagement.enable = false;
+        nvidiaSettings = true;
         open = false;
     };
 
@@ -36,15 +37,26 @@
         enable = true;
         settings = {
             default_session = {
-                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startx";
-                user = "greeter";
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd hyprland";
+                user = "adhoc";
             };
         };
     };
 
-    programs.xmonad.enable = true;
+    programs.hyprland = {
+        enable = true;
+        xwayland.enable = true;
+    };
 
-    security.polkit.enable = true;
+    xdg.portal = {
+        enable = true;
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
+
+    environment.sessionVariables = {
+        WLR_NO_HARDWARE_CURSORS = "1";
+        NIXOS_OZONE_WL = "1";
+    };
 
     # Bootloader.
     boot.loader.systemd-boot.enable = true;
@@ -80,23 +92,12 @@
         LC_TIME = "en_US.UTF-8";
     };
 
-    # Enable the X11 windowing system.
-    # You can disable this if you're only using the Wayland session.
-    services.xserver.enable = true;
-    services.xserver.videoDrivers = ["nvidia"];
-
     # Enable the KDE Plasma Desktop Environment.
     # services.displayManager.sddm.enable = true;
     # services.desktopManager.plasma6.enable = true;
 
     # services.xserver.displayManager.gdm.enable = true;
     # services.xserver.desktopManager.gnome.enable = true;
-
-    # Configure keymap in X11
-    services.xserver.xkb = {
-        layout = "us";
-        variant = "";
-    };
 
     # Enable CUPS to print documents.
     services.printing.enable = true;
@@ -160,6 +161,18 @@
         spotify
         xclip
         xsel
+
+        # (pkgs.waybar.overrideAttrs (oldAttrs: {
+        #     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+        # }))
+        waybar # use above if bugs
+        libnotify
+        dunst
+        mako
+        swww
+        rofi-wayland
+        networkmanagerapplet
+        lsd
     ];
 
     fonts.packages = with pkgs; [

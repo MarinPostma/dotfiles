@@ -1,4 +1,4 @@
-{ config, pkgs, xmonad-contexts, ... }:
+{ config, pkgs, ... }:
 
 {
     imports = [
@@ -16,6 +16,8 @@
     xdg.configFile = {
         "nvim/lua".source = ../../../nvim/lua;
         "nvim/init.lua".source = ../../../nvim/init.lua;
+        "hypr/hyprland.conf".source = ../../../hypr/hyprland.conf;
+        "hypr/start.sh".source = ../../../hypr/start.sh;
     };
 
     programs.neovim = {
@@ -38,12 +40,6 @@
         };
     };
 
-    home.file.".xinitrc".text = ''
-        exec xmonad
-    '';
-
-    services.gnome-keyring.enable = true;
-
     programs.zsh = {
         enable = true;
         enableCompletion = true;
@@ -52,22 +48,22 @@
 
         shellAliases = {
             grep="rg";
-                ls="lsd";
-                http="xh";
-                vim="nvim";
-                vi="nvim";
-                gs="git --no-pager log --oneline -n10 && git status";
-                cat="bat";
-                gane="git commit -a --amend --no-edit";
-                cr="cargo run";
-                crr="cargo run --release";
-                ct="cargo test";
-                gwa="git worktree add";
-                gwr="git worktree remove";
-                gwl="git worktree list";
-                gw="git worktree";
-                gwc="git worktree list | fzf -m | awk {print $1} | xargs -I _ git worktree remove -f _";
-                py="python3";
+            ls="lsd";
+            http="xh";
+            vim="nvim";
+            vi="nvim";
+            gs="git --no-pager log --oneline -n10 && git status";
+            cat="bat";
+            gane="git commit -a --amend --no-edit";
+            cr="cargo run";
+            crr="cargo run --release";
+            ct="cargo test";
+            gwa="git worktree add";
+            gwr="git worktree remove";
+            gwl="git worktree list";
+            gw="git worktree";
+            gwc="git worktree list | fzf -m | awk {print $1} | xargs -I _ git worktree remove -f _";
+            py="python3";
         };
 
         oh-my-zsh = {
