@@ -16,8 +16,8 @@
     xdg.configFile = {
         "nvim/lua".source = ../../../nvim/lua;
         "nvim/init.lua".source = ../../../nvim/init.lua;
-        "hypr/hyprland.conf".source = ../../../hypr/hyprland.conf;
-        "hypr/start.sh".source = ../../../hypr/start.sh;
+        # "hypr/hyprland.conf".source = ../../../hypr/hyprland.conf;
+        # "hypr/start.sh".source = ../../../hypr/start.sh;
     };
 
     programs.neovim = {

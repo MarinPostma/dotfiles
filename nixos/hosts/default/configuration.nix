@@ -11,6 +11,13 @@
             inputs.home-manager.nixosModules.default
         ];
 
+    boot.kernelParams = [
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm.fbdev=1"
+        "nvidia_drm.modeset=1"
+    ];
     nix.settings.experimental-features = [ "nix-command"  "flakes" ];
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = true;
@@ -33,30 +40,30 @@
         };
     };
 
-    services.greetd = {
-        enable = true;
-        settings = {
-            default_session = {
-                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd hyprland";
-                user = "adhoc";
-            };
-        };
-    };
+    # services.greetd = {
+    #     enable = true;
+    #     settings = {
+    #         default_session = {
+    #             command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+    #             user = "adhoc";
+    #         };
+    #     };
+    # };
 
     programs.hyprland = {
         enable = true;
-        xwayland.enable = true;
+        # xwayland.enable = true;
     };
 
-    xdg.portal = {
-        enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    };
+    # xdg.portal = {
+    #     enable = true;
+    #     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    # };
 
-    environment.sessionVariables = {
-        WLR_NO_HARDWARE_CURSORS = "1";
-        NIXOS_OZONE_WL = "1";
-    };
+    # environment.sessionVariables = {
+        # WLR_NO_HARDWARE_CURSORS = "1";
+        # NIXOS_OZONE_WL = "1";
+    # };
 
     # Bootloader.
     boot.loader.systemd-boot.enable = true;
@@ -142,6 +149,7 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
+        gdb
         neovim
         wget
         alacritty
@@ -161,6 +169,7 @@
         spotify
         xclip
         xsel
+        egl-wayland
 
         # (pkgs.waybar.overrideAttrs (oldAttrs: {
         #     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
@@ -173,11 +182,15 @@
         rofi-wayland
         networkmanagerapplet
         lsd
+        bat
+
+        jetbrains-mono
     ];
 
-    fonts.packages = with pkgs; [
-        nerd-fonts.jetbrains-mono
-    ];
+    # fonts.packages = with pkgs; [
+    #     (nerdfonts.override { fonts = ["jetbrains-mono"]; })
+    #     jetbrains-mono
+    # ];
 
     programs.nix-ld.enable = true;
     programs.nix-ld.libraries = with pkgs; [
