@@ -141,6 +141,10 @@
         fzf
         ripgrep
         fd
+        discord
+        spotify
+        xclip
+        xsel
     ];
 
     fonts.packages = with pkgs; [

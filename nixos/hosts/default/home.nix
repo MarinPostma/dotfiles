@@ -83,22 +83,46 @@
     };
 
 
-    programs.p10k.enable = true;
     programs.zsh = {
         enable = true;
         enableCompletion = true;
         autosuggestion.enable = true;
-        syntaxHighlighting = true;
+        syntaxHighlighting.enable = true;
+
+        shellAliases = {
+            grep="rg";
+                ls="lsd";
+                http="xh";
+                vim="nvim";
+                vi="nvim";
+                gs="git --no-pager log --oneline -n10 && git status";
+                cat="bat";
+                gane="git commit -a --amend --no-edit";
+                cr="cargo run";
+                crr="cargo run --release";
+                ct="cargo test";
+                gwa="git worktree add";
+                gwr="git worktree remove";
+                gwl="git worktree list";
+                gw="git worktree";
+                gwc="git worktree list | fzf -m | awk {print $1} | xargs -I _ git worktree remove -f _";
+                py="python3";
+        };
+
+        oh-my-zsh = {
+            enable = true;
+        };
 
         zplug = {
             enable = true;
             plugins = [
                 { name = "plugins/git"; tags = [ from:oh-my-zsh ]; }
+                { name = "plugins/rust"; tags = [ from:oh-my-zsh ]; }
                 { name = "plugins/fzf"; tags = [ from:oh-my-zsh ]; }
-                { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } 
             ];
-          };
+        };
     };
-        # Let Home Manager install and manage itself.
-        programs.home-manager.enable = true;
+    programs.p10k.enable = true;
+    # Let Home Manager install and manage itself.
+    programs.home-manager.enable = true;
 }

@@ -1,3 +1,5 @@
-inputs: {
-    "programs/p10k" = import ./programs/p10k/ inputs;
+{ pkgs, lib, ... }: {
+    imports = [
+        ./programs/p10k/default.nix
+    ];
 }
