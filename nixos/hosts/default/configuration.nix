@@ -158,6 +158,8 @@
         networkmanagerapplet
         lsd
         bat
+        htop
+        mold
 
         jetbrains-mono
     ];

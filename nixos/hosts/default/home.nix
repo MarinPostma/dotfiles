@@ -20,6 +20,8 @@
         # "hypr/start.sh".source = ../../../hypr/start.sh;
     };
 
+    home.file.".cargo/config.toml".source = ../../../cargo-config.toml;
+
     programs.neovim = {
         enable = true;
 
