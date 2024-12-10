@@ -60,6 +60,7 @@
 
     # Bootloader.
     boot.loader.systemd-boot.enable = true;
+    boot.loader.grub.efiSupport = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
     networking.hostName = "adhocnixos"; # Define your hostname.
@@ -176,10 +177,27 @@
     };
 
     ## Gamming
-    programs.steam.enable = true;
-    # launch game in micro-compositor for better compat
-    programs.steam.gamescopeSession.enable = true;
-    programs.gamemode.enable = true; # perf enhancement
+    programs = {
+        gamemode = {
+            enable = true;
+            settings = {
+                # additional gamemode settings...
+                # e.g. general.renice = 10;
+            };
+        };
+        steam = {
+            enable = true;
+            package = pkgs.steam.override {
+                extraPkgs = (pkgs: with pkgs; [
+                    gamemode
+                    # additional packages...
+                    # e.g. some games require python3
+                ]);
+            };
+            # additional steam settings...
+            # e.g. remotePlay.openFirewall = true;
+        };
+    };
     environment.sessionVariables = {
         STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/adhoc/.steam/root/compatibilitytools.d";
     };
