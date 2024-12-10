@@ -160,6 +160,7 @@
         bat
         htop
         mold
+        gh
 
         jetbrains-mono
     ];
