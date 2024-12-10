@@ -14,10 +14,10 @@
     };
 
     xdg.configFile = {
-        "nvim/lua".source = ../../../nvim/lua;
-        "nvim/init.lua".source = ../../../nvim/init.lua;
-        # "hypr/hyprland.conf".source = ../../../hypr/hyprland.conf;
-        # "hypr/start.sh".source = ../../../hypr/start.sh;
+        nvim = {
+            source = ../../../nvim;
+            recursive = true;
+        };
     };
 
     home.file.".cargo/config.toml".source = ../../../cargo-config.toml;
