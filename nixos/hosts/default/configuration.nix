@@ -117,15 +117,21 @@
     programs.firefox.enable = true;
     programs.zsh.enable = true;
 
+    services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+    };
+
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
-        opera
+        brave
         gdb
         neovim
+        jq
         wget
         alacritty
         mangohud # perf monitor overlay
@@ -161,6 +167,9 @@
         htop
         mold
         gh
+        wl-clipboard
+        xclip
+        clipnotify
 
         jetbrains-mono
     ];

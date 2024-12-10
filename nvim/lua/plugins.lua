@@ -21,6 +21,7 @@ return {
     { 'junegunn/fzf.vim', lazy = false },
     { 'justinmk/vim-sneak', lazy = false },
     { 'voldikss/vim-floaterm', lazy = false },
+    { 'LnL7/vim-nix', lazy = true },
     {
         'nvim-treesitter/nvim-treesitter',
         lazy = true,

@@ -46,6 +46,7 @@ pkgs,
                 wl-clipboard
                 wl-clipboard-x11
                 xdotool
+                inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
             ];
 
             xdg.configFile = {
@@ -65,14 +66,13 @@ pkgs,
                 };
                 settings = {
                     "$scriptsDir" = "XDG_BIN_HOME";
-                    "$hyprScriptsDir" = "$XDG_CONFIG_HOME/hypr/scripts";
+                    "$hyprScriptsDir" = "$XDG_CONFIG_HOME/hypr";
                     "$mainMod" = "SUPER";
                     "$launcher" = "pkill rofi || rofi -show drun -modi drun,filebrowser,run,window -theme DarkBlue";
                     "$term" = "${getExe pkgs.alacritty}";
                     "$editor" = "code --disable-gpu";
                     "$file" = "$term -e lf";
                     "$browser" = "firefox";
-
                     env = [
                         "XDG_CURRENT_DESKTOP,Hyprland"
                         "XDG_SESSION_DESKTOP,Hyprland"
@@ -91,9 +91,11 @@ pkgs,
                         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
                         "WLR_RENDERER_ALLOW_SOFTWARE,1"
                         "NIXPKGS_ALLOW_UNFREE,1"
+                        "HYPRCURSOR_THEME,rose-pine-hyprcursor"
                     ];
                     exec-once = [
-                        # "hyprpaper"
+                        "hyprpaper"
+                        "1password"   
                         "sleep 1 && waybar"
                         # "swaync"
                         "pamixer --set-volume 50"
@@ -101,9 +103,9 @@ pkgs,
                         "blueman-applet"
                         "nm-applet --indicator"
                         "wl-clipboard-history -t"
-                        # "${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch cliphist store" # clipboard store text data
-                        # "${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store" # clipboard store image data
-                        # "rm '$XDG_CACHE_HOME/cliphist/db'" # Clear clipboard
+                        "${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch cliphist store" # clipboard store text data
+                        "${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store" # clipboard store image data
+                        "rm '$XDG_CACHE_HOME/cliphist/db'" # Clear clipboard
                         # "$hyprScriptsDir/batterynotify.sh" # battery notification
                         "polkit-agent-helper-1"
                         "systemctl start --user polkit-kde-authentication-agent-1"
@@ -215,8 +217,11 @@ pkgs,
                     ];
                     bind =
                         [
-                            # Overview plugin
-                            # "$mainMod, tab, overview:toggle"
+                            # passthrough
+                            "SUPER_SHIFT, C, pass, brave"
+                            "SUPER_SHIFT, [, pass, brave"
+                            "SUPER_SHIFT, ], pass, brave"
+                            "SUPER_SHIFT, T, pass, brave"
 
                             "SUPER_SHIFT, S, exec, $hyprScriptsDir/screenshot.sh s" # drag to snip an area / click on a window to print it
 

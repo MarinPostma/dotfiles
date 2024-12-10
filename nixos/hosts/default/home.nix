@@ -17,6 +17,7 @@
         nvim = {
             source = ../../../nvim;
             recursive = true;
+            force = true;
         };
     };
 
