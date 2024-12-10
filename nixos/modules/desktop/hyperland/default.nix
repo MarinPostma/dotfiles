@@ -150,8 +150,7 @@
           misc = {
             disable_hyprland_logo = true;
             mouse_move_focuses_monitor = true;
-            vfr = true; # always keep on
-            vrr = 1; # enable variable refresh rate (0=off, 1=on, 2=fullscreen only)
+            vfr = true; # always keep on vrr = 1; # enable variable refresh rate (0=off, 1=on, 2=fullscreen only)
           };
           gestures = {
             workspace_swipe = true;
@@ -213,15 +212,11 @@
               # "$mainMod, tab, overview:toggle"
 
               # Window/Session actions
-              "SUPER_SHIFT, SHIFT&E, exit" # kill hyperland session
+              "SUPER_SHIFT, E, exit" # kill hyperland session
               "SUPER_SHIFT, Q, killactive" # kill hyperland session
               "ALT, return, fullscreen" # toggle the window on focus to fullscreen
 
               "$mainMod, Return, exec, $term"
-              "$mainMod, T, exec, $term"
-              "$mainMod, E, exec, $file"
-              "$mainMod, C, exec, $editor"
-              "$mainMod, F, exec, $browser"
               "$CONTROL ALT, DELETE, exec, $term -e '${getExe pkgs.btop}'" # system monitor
 
               "$mainMod, SPACE, exec, pkill -x rofi || $launcher" # launch desktop applications
