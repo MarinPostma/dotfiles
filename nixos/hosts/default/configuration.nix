@@ -9,28 +9,16 @@
         [ # Include the results of the hardware scan.
             ./hardware-configuration.nix
             inputs.home-manager.nixosModules.default
+            ./nvidia.nix
+            ./../../modules/desktop/hyperland
         ];
 
-    boot.kernelParams = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm.fbdev=1"
-        "nvidia_drm.modeset=1"
-    ];
     nix.settings.experimental-features = [ "nix-command"  "flakes" ];
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = true;
     hardware.graphics = {
         enable = true;
         enable32Bit = true;
-    };
-
-    hardware.nvidia = {
-        modesetting.enable = true;
-        powerManagement.enable = false;
-        nvidiaSettings = true;
-        open = false;
     };
 
     home-manager = {
@@ -40,51 +28,46 @@
         };
     };
 
-    # services.greetd = {
-    #     enable = true;
-    #     settings = {
-    #         default_session = {
-    #             command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-    #             user = "adhoc";
-    #         };
-    #     };
-    # };
-
-    programs.hyprland = {
+    services.greetd = {
         enable = true;
-        # xwayland.enable = true;
+        settings = {
+            default_session = {
+                command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+                user = "adhoc";
+            };
+        };
     };
 
-    # xdg.portal = {
-    #     enable = true;
-    #     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    # };
 
-    # environment.sessionVariables = {
-        # WLR_NO_HARDWARE_CURSORS = "1";
-        # NIXOS_OZONE_WL = "1";
-    # };
+    security = {
+        polkit.enable = true;
+        sudo.wheelNeedsPassword = false;
+    };
+
+    services.xserver.enable = true; # Enable the X11 windowing system.
+    xdg.portal = {
+        enable = true;
+        extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+    };
+
+    # Enable dconf for home-manager
+    programs.dconf.enable = true;
+
+    fonts.packages = with pkgs.nerd-fonts; [
+        jetbrains-mono
+        fira-code
+    ];
 
     # Bootloader.
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    # boot.kernelPackages = pkgs.linuxPackages_latest;
-
     networking.hostName = "adhocnixos"; # Define your hostname.
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Enable networking
     networking.networkmanager.enable = true;
 
-    # Set your time zone.
     time.timeZone = "Europe/Prague";
 
-    # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
 
     i18n.extraLocaleSettings = {
@@ -98,13 +81,6 @@
         LC_TELEPHONE = "en_US.UTF-8";
         LC_TIME = "en_US.UTF-8";
     };
-
-    # Enable the KDE Plasma Desktop Environment.
-    # services.displayManager.sddm.enable = true;
-    # services.desktopManager.plasma6.enable = true;
-
-    # services.xserver.displayManager.gdm.enable = true;
-    # services.xserver.desktopManager.gnome.enable = true;
 
     # Enable CUPS to print documents.
     services.printing.enable = true;
@@ -124,9 +100,6 @@
         # no need to redefine it in your config for now)
         #media-session.enable = true;
     };
-
-    # Enable touchpad support (enabled default in most desktopManager).
-    # services.xserver.libinput.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.adhoc = {
