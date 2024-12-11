@@ -22,16 +22,28 @@
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
+  programs.firefox.enable = true;
+
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     mangohud
     protonup
+    steam
+    alacritty
   ];
+
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/adhoc/.steam/root/compatibilitytools.d";
+  }
 
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.modesetting.enable = true;
 
-  services.xserver.enable = true;
   system.stateVersion = "25.05"; # Did you read the comment?
 }
 

@@ -149,26 +149,12 @@
         xclip
         xsel
         egl-wayland
-
-        # (pkgs.waybar.overrideAttrs (oldAttrs: {
-        #     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-        # }))
-        waybar # use above if bugs
-        libnotify
-        dunst
-        mako
-        swww
-        rofi-wayland
-        networkmanagerapplet
+        nixd
         lsd
         bat
         htop
         mold
         gh
-        wl-clipboard
-        xclip
-        clipnotify
-
         jetbrains-mono
     ];
 
