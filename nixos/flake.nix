@@ -20,8 +20,11 @@
       ];
     };
 
-    # nixosConfigurations.gaming = nixpkgs.lib.nixosSystem {
-    #
-    # };
+    nixosConfigurations.gaming = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
+        ./hosts/gaming/configuration.nix
+      ];
+    };
   };
 }
