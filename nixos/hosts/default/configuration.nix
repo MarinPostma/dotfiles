@@ -7,7 +7,7 @@
 {
     imports =
         [ # Include the results of the hardware scan.
-            ./hardware-configuration.nix
+            ./../hardware-configuration.nix
             inputs.home-manager.nixosModules.default
             ./nvidia.nix
             ./../../modules/desktop/hyperland
@@ -134,8 +134,6 @@
         jq
         wget
         alacritty
-        mangohud # perf monitor overlay
-        protonup
         git
         rustup
         obsidian
@@ -187,32 +185,6 @@
     programs._1password.enable = true;
     programs._1password-gui = {
         enable = true;
-    };
-
-    ## Gamming
-    programs = {
-        gamemode = {
-            enable = true;
-            settings = {
-                # additional gamemode settings...
-                # e.g. general.renice = 10;
-            };
-        };
-        steam = {
-            enable = true;
-            package = pkgs.steam.override {
-                extraPkgs = (pkgs: with pkgs; [
-                    gamemode
-                    # additional packages...
-                    # e.g. some games require python3
-                ]);
-            };
-            # additional steam settings...
-            # e.g. remotePlay.openFirewall = true;
-        };
-    };
-    environment.sessionVariables = {
-        STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/adhoc/.steam/root/compatibilitytools.d";
     };
 
     # Some programs need SUID wrappers, can be configured further or are
