@@ -62,7 +62,7 @@
         };
         settings = {
           "$scriptsDir" = "XDG_BIN_HOME";
-          "$hyprScriptsDir" = "$XDG_CONFIG_HOME/hypr";
+          "$hyprScriptsDir" = "$HOME/.config/hypr/";
           "$mainMod" = "SUPER";
           "$launcher" = "pkill rofi || rofi -show drun -modi drun,filebrowser,run,window -theme DarkBlue";
           "$term" = "${getExe pkgs.alacritty}";
