@@ -9,14 +9,16 @@
     };
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
+    ghostty.url = "github:clo4/ghostty-hm-module";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ghostty, ... }@inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs; };
       modules = [
         ./hosts/default/configuration.nix
         inputs.home-manager.nixosModules.default
+        ghostty.homeModules.default
       ];
     };
 

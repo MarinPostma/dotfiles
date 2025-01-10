@@ -178,6 +178,7 @@
     jetbrains-mono
     sqlite
     sqlite.dev
+    zathura
   ];
 
   # fonts.packages = with pkgs; [
