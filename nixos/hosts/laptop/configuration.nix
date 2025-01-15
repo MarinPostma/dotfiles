@@ -19,4 +19,7 @@
   evdev:atkbd:*
     KEYBOARD_KEY_3a=esc
   '';
+
+  services.tlp.enable = true;
+  services.thermald.enable = true;
 }
