@@ -65,7 +65,7 @@
           "$hyprScriptsDir" = "$HOME/.config/hypr/";
           "$mainMod" = "SUPER";
           "$launcher" = "pkill rofi || rofi -show drun -modi drun,filebrowser,run,window -theme DarkBlue";
-          "$term" = "${getExe pkgs.alacritty}";
+          "$term" = "${getExe pkgs.alacritty} -e tmux";
           "$editor" = "code --disable-gpu";
           "$file" = "$term -e lf";
           "$browser" = "firefox";

@@ -34,10 +34,6 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      shell = {
-        program = /bin/sh;
-        args = [ "-c" "tmux" ];
-      };
       window = {
         padding = {
           x = 10;
