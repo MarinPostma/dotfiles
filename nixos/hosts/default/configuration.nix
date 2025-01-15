@@ -179,6 +179,7 @@
     sqlite
     sqlite.dev
     zathura
+    zulip
   ];
 
   # fonts.packages = with pkgs; [
