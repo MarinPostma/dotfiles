@@ -7,7 +7,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      inputs.home-manager.nixosModules.default
       ./../../modules/desktop/hyperland
     ];
 
@@ -17,6 +16,27 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+  };
+
+  programs = {
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/adhoc/dotfiles/nixos/";
+    };
+    thunar.enable = true;
+    dconf.enable = true;
+    firefox.enable = true;
+    zsh.enable = true;
+    _1password.enable = true;
+    _1password-gui.enable = true;
+  };
+
+
+  virtualisation = {
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
   };
 
   home-manager = {
@@ -48,8 +68,6 @@
     extraPortals = with pkgs; [xdg-desktop-portal-gtk];
   };
 
-  # Enable dconf for home-manager
-  programs.dconf.enable = true;
 
   fonts.packages = with pkgs.nerd-fonts; [
     jetbrains-mono
@@ -104,7 +122,7 @@
   users.users.adhoc = {
     isNormalUser = true;
     description = "adhoc";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
       #  thunderbird
@@ -112,9 +130,6 @@
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
-  programs.zsh.enable = true;
-
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -126,6 +141,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    qemu
+    qemu_kvm
+    edk2
     brave
     gdb
     neovim
@@ -155,6 +173,10 @@
     mold
     gh
     jetbrains-mono
+    sqlite
+    sqlite.dev
+    zathura
+    zulip
   ];
 
   # fonts.packages = with pkgs; [
@@ -165,12 +187,9 @@
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     # add dylibs here
+    sqlite
   ];
 
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

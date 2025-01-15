@@ -21,6 +21,12 @@
     };
   };
 
+  programs.git = {
+    enable = true;
+    userName = "adhoc";
+    userEmail = "postma.marin@protonmail.com";
+  };
+
   home.file.".cargo/config.toml".source = ../../../cargo-config.toml;
 
   programs.neovim = {

@@ -12,12 +12,11 @@
     ghostty.url = "github:clo4/ghostty-hm-module";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+  outputs = { nixpkgs, ... }@inputs: {
+    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs; };
       modules = [
-        ./hosts/default/configuration.nix
-        inputs.home-manager.nixosModules.default
+        ./hosts/desktop/configuration.nix
       ];
     };
 
