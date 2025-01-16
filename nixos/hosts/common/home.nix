@@ -27,6 +27,17 @@
     userEmail = "postma.marin@protonmail.com";
   };
 
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      # font-family = "JetBrainsMono Nerd Font";
+      font-family = "JetBrainsMono Nerd Font Mono";
+      window-decoration = false;
+      command = "tmux";
+      theme = "catppuccin-mocha";
+    };
+  };
+
   home.file.".cargo/config.toml".source = ../../../cargo-config.toml;
 
   programs.neovim = {

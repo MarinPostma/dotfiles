@@ -5,5 +5,5 @@ require 'settings'
 require 'mappings'
 require 'lsp'
 
-vim.o.background = "dark"
-vim.cmd([[colorscheme catppuccin]])
+-- vim.o.background = "dark"
+-- vim.cmd([[colorscheme catppuccin]])
