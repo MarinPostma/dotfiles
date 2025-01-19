@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./../hardware-configuration.nix
+      ./../../hardware/desktop/hardware-configuration.nix
     ];
 
   networking.hostName = "adhocnixos"; # Define your hostname.
