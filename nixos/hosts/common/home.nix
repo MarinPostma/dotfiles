@@ -13,6 +13,15 @@
     EDITOR = "nvim";
   };
 
+  programs.qutebrowser = {
+    enable = true;
+    searchEngines = { DEFAULT = "https://google.com/search?q={}"; };
+    settings = {
+      content.javascript.clipboard = "access";
+      colors.webpage.darkmode.enabled = true;
+    };
+  };
+
   xdg.configFile = {
     nvim = {
       source = ../../../nvim;
@@ -30,7 +39,6 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      # font-family = "JetBrainsMono Nerd Font";
       font-family = "JetBrainsMono Nerd Font Mono";
       window-decoration = false;
       command = "tmux";

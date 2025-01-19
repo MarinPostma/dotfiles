@@ -177,6 +177,7 @@
     sqlite.dev
     zathura
     zulip
+    exercism
   ];
 
   # fonts.packages = with pkgs; [
