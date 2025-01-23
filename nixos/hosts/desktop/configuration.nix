@@ -22,6 +22,6 @@
   };
 
   users.users."adhoc".openssh.authorizedKeys = [
-    # todo
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH16lfhNcEXpLU59BNX+D0AW3yLTUqrdnSOPXc1383/T adhoc@adhocnixos" #laptop
   ];
 }
