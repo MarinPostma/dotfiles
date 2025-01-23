@@ -33,6 +33,7 @@
     _1password-gui.enable = true;
   };
 
+  services.tailscale.enable = true;
 
   virtualisation = {
     libvirtd.enable = true;

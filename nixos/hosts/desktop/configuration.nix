@@ -13,15 +13,15 @@
       inputs.home-manager.nixosModules.default
     ];
 
-  services.sshd = {
+  services.openssh = {
     enable = true;
-    startWhenNeeded = true;
-    openFirewall = true;
     passwordAuthentication = false;
-    X11Forwarding = true;
+    openFirewall = true;
+    ports = [22 4222];
   };
 
-  users.users."adhoc".openssh.authorizedKeys = [
+  users.users."adhoc".openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH16lfhNcEXpLU59BNX+D0AW3yLTUqrdnSOPXc1383/T adhoc@adhocnixos" #laptop
   ];
+
 }
