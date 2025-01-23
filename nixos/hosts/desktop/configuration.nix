@@ -12,4 +12,16 @@
       ../../hardware/desktop/hardware-configuration.nix
       inputs.home-manager.nixosModules.default
     ];
+
+  services.sshd = {
+    enable = true;
+    startWhenNeeded = true;
+    openFirewall = true;
+    passwordAuthentication = false;
+    X11Forwarding = true;
+  };
+
+  users.users."adhoc".openssh.authorizedKeys = [
+    # todo
+  ];
 }

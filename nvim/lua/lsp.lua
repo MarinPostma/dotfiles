@@ -72,7 +72,7 @@ lsp.clangd.setup{
     capabilities = capabilities,
 }
 
--- lsp.nixd.setup{}
+lsp.nixd.setup{}
 
 lsp.clojure_lsp.setup{
     capabilities = capabilities

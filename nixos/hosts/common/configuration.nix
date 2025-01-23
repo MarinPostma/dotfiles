@@ -178,6 +178,8 @@
     zathura
     zulip
     exercism
+    pkg-config
+    openssl
   ];
 
   # fonts.packages = with pkgs; [
