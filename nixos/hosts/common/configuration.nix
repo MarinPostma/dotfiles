@@ -183,6 +183,8 @@
     openssl
   ];
 
+  programs.noisetorch.enable = true;
+
   # fonts.packages = with pkgs; [
   #     (nerdfonts.override { fonts = ["jetbrains-mono"]; })
   #     jetbrains-mono
