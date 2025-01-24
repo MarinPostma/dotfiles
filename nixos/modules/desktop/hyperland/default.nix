@@ -227,7 +227,8 @@
               "SUPER_SHIFT, Q, killactive" # kill hyperland session
               "ALT, return, fullscreen" # toggle the window on focus to fullscreen
 
-              "$mainMod, Return, exec, $term"
+              "$mainMod, Return, exec, $term -e tmux"
+              "SUPER_SHIFT, Return, exec, $term"
               "$CONTROL ALT, DELETE, exec, $term -e '${getExe pkgs.btop}'" # system monitor
 
               "$mainMod, SPACE, exec, pkill -x rofi || $launcher" # launch desktop applications

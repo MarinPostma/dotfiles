@@ -181,6 +181,7 @@
     exercism
     pkg-config
     openssl
+    arandr
   ];
 
   programs.noisetorch.enable = true;

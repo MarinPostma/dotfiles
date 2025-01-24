@@ -41,7 +41,7 @@
     settings = {
       font-family = "JetBrainsMono Nerd Font Mono";
       window-decoration = false;
-      command = "tmux";
+      # command = "tmux";
       theme = "catppuccin-mocha";
     };
   };
