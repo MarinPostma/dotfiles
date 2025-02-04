@@ -3,8 +3,7 @@
   imports = [
     ./../../modules
   ];
-  home.username = "mpostma";
-  # home.homeDirectory = "/Users/mpostma/";
+  home.username = "adhoc";
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
   # programs.ghostty = {

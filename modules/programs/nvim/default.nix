@@ -4,6 +4,9 @@
       fzf
       fd
       ripgrep
+
+      # LSPs
+      nixd
     ];
     
     home.sessionVariables = {

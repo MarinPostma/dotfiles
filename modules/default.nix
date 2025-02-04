@@ -7,5 +7,7 @@
     ./programs/git
     ./programs/rust
     ./programs/alacritty
+    ./fonts.nix
+    ./programs/ghostty
   ];
 }

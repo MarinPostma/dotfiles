@@ -4,7 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager?rev=05c64fa76b2dfbf4a3f5fbca916bcc7f434739d7";
+      
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -15,9 +16,12 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
-  outputs = { nixpkgs, nix-darwin, home-manager, rust-overlay, ... }@inputs: {
+  outputs = { nixpkgs, nix-darwin, home-manager, ... }@inputs: {
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -39,17 +43,20 @@
       ];
     };
 
-    darwinConfigurations.mbp = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.mbp = let 
+      system = "aarch64-darwin";
+    in
+      nix-darwin.lib.darwinSystem {
+        inherit system;
         specialArgs = { inherit inputs; };
-        system = "aarch64-darwin";
         modules = [
           ./hosts/darwin
           home-manager.darwinModules.home-manager {
             home-manager = {
-              extraSpecialArgs = { inherit inputs; };
-              users.mpostma = import ./hosts/darwin/home.nix;
+              extraSpecialArgs = { inherit inputs system; };
+              users.adhoc = import ./hosts/darwin/home.nix;
             };
-            users.users.mpostma.home = /Users/mpostma;
+            users.users.adhoc.home = /Users/adhoc;
           }
         ];
       };

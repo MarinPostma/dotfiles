@@ -80,11 +80,6 @@
   };
 
 
-  fonts.packages = with pkgs.nerd-fonts; [
-    jetbrains-mono
-    fira-code
-  ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.grub.efiSupport = true;
