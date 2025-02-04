@@ -9,12 +9,17 @@
     };
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
-    ghostty.url = "github:clo4/ghostty-hm-module";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, ... }@inputs: {
+  outputs = { nixpkgs, nix-darwin, home-manager, rust-overlay, ... }@inputs: {
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs; };
+      specialArgs = { inherit inputs; };
       modules = [
         ./hosts/desktop/configuration.nix
       ];
@@ -33,5 +38,20 @@
         ./hosts/laptop/configuration.nix
       ];
     };
+
+    darwinConfigurations.mbp = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs; };
+        system = "aarch64-darwin";
+        modules = [
+          ./hosts/darwin
+          home-manager.darwinModules.home-manager {
+            home-manager = {
+              extraSpecialArgs = { inherit inputs; };
+              users.mpostma = import ./hosts/darwin/home.nix;
+            };
+            users.users.mpostma.home = /Users/mpostma;
+          }
+        ];
+      };
   };
 }

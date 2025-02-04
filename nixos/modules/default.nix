@@ -1,5 +1,11 @@
 { pkgs, lib, ... }: {
-    imports = [
-        ./programs/p10k/default.nix
-    ];
+  imports = [
+    ./programs/zsh
+    ./programs/nvim
+    ./programs/qute
+    ./programs/tmux
+    ./programs/git
+    ./programs/rust
+    ./programs/alacritty
+  ];
 }

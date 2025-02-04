@@ -157,7 +157,6 @@
     obsidian
     gcc
     clang
-    zig
     gnumake
     fzf
     ripgrep
