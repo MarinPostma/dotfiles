@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ ... }: {
   imports = [
     ./programs/zsh
     ./programs/nvim

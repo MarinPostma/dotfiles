@@ -1,8 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, system, ... }:
 {
   nix.settings.experimental-features = [ "nix-command"  "flakes" ];
   hardware.bluetooth.enable = true;
@@ -14,7 +10,10 @@
 
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
+    settings = {
+      UseDns = true;
+      PasswordAuthentication = false;
+    };
     openFirewall = true;
     ports = [22 4222];
   };
@@ -24,9 +23,16 @@
   ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs system; };
     users = {
-      "adhoc" = import ./home.nix;
+      "adhoc" = { ... }: {
+        imports = [ ./.. ];
+        home.username = "adhoc";
+        home.homeDirectory = "/home/adhoc";
+        home.stateVersion = "24.11"; # Please read the comment before changing.
+
+        programs.home-manager.enable = true;
+      };
     };
   };
 
@@ -68,7 +74,7 @@
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -82,6 +88,7 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.adhoc = {
@@ -104,48 +111,56 @@
     sqlite
   ];
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  services.tailscale.enable = true;
 
-  specialisation = {
-    gaming.configuration = {
-      environment.systemPackages = with pkgs; [
-        mangohud
-        protonup
-        steam
-        alacritty
-        neovim
-        jetbrains-mono
-        git
-        discord
-      ];
-
-      environment.sessionVariables = {
-        STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/adhoc/.steam/root/compatibilitytools.d";
-      };
-
-      services.xserver.videoDrivers = ["nvidia"];
-      hardware.nvidia = {
-        modesetting.enable = true;
-        open = true;
-      };
-
-      programs.steam.enable = true;
-      programs.steam.gamescopeSession.enable = true;
-      programs.gamemode.enable = true;
-      programs.firefox.enable = true;
-
-      services.xserver.enable = true; # optional
-      services.displayManager.sddm.enable = true;
-      services.displayManager.sddm.wayland.enable = true;
-      services.desktopManager.plasma6.enable = true;
+  programs = {
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/adhoc/dotfiles/";
     };
-
-    workstation.configuration = {
-      imports = [
-        ./workstation.nix
-        ../desktop/nvidia.nix
-      ];
-    };
+    thunar.enable = true;
+    dconf.enable = true;
+    firefox.enable = true;
+    _1password.enable = true;
+    _1password-gui.enable = true;
+    noisetorch.enable = true;
   };
 
+  environment.defaultPackages = with pkgs; [
+    qemu
+    qemu_kvm
+    edk2
+    brave
+    gdb
+    neovim
+    steam
+    jq
+    wget
+    alacritty
+    git
+    rustup
+    obsidian
+    gcc
+    clang
+    gnumake
+    discord
+    spotify
+    xclip
+    xsel
+    egl-wayland
+    nixd
+    bat
+    htop
+    mold
+    zathura
+    zulip
+    pkg-config
+    openssl
+    arandr
+    perl
+  ];
+
+  system.stateVersion = "24.11"; # Did you read the comment?
 }

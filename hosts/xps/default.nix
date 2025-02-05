@@ -3,15 +3,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       inputs.home-manager.nixosModules.default
-      ./../../modules/desktop/hyperland
-      ./../common/configuration.nix
-      ../../hardware/laptop/hardware-configuration.nix
+      ./../../modules/specializations/workstation.nix
+      ./hardware-configuration.nix
     ];
 
   # Remap CAPS lock to ESC

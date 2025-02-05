@@ -1,9 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     home-manager
   ];
-
 
   system = {
     stateVersion = 6;
@@ -24,7 +23,6 @@
 
       dock.autohide = true;
     };
-
   };
 
   services.nix-daemon.enable = true;
@@ -49,6 +47,7 @@
       "arc"
       "raycast"
       "discord"
+      "qutebrowser"
     ];
   };
 }

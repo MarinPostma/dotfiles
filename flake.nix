@@ -2,9 +2,9 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=d2faa1bbca1b1e4962ce7373c5b0879e5b12cef2";
     home-manager = {
-      url = "github:nix-community/home-manager?rev=05c64fa76b2dfbf4a3f5fbca916bcc7f434739d7";
+      url = "github:nix-community/home-manager";
       
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -12,35 +12,19 @@
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
   };
 
   outputs = { nixpkgs, nix-darwin, home-manager, ... }@inputs: {
-    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/desktop/configuration.nix
-      ];
+    nixosConfigurations.desktop = let 
+      system = "x86_64-linux";
+    in nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs system; };
+      modules = [ ./hosts/desktop ];
     };
 
-    nixosConfigurations.gaming = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.xps = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/gaming/configuration.nix
-      ];
-    };
-
-    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/laptop/configuration.nix
-      ];
+      modules = [ ./hosts/xps ];
     };
 
     darwinConfigurations.mbp = let 
@@ -54,7 +38,11 @@
           home-manager.darwinModules.home-manager {
             home-manager = {
               extraSpecialArgs = { inherit inputs system; };
-              users.adhoc = import ./hosts/darwin/home.nix;
+              users.adhoc = { ... }: {
+                imports = [ ./modules ];
+                home.username = "adhoc";
+                home.stateVersion = "24.11"; # Please read the comment before changing.
+              };
             };
             users.users.adhoc.home = /Users/adhoc;
           }
