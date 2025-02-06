@@ -160,6 +160,7 @@
     openssl
     arandr
     perl
+    linuxPackages_latest.perf
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
