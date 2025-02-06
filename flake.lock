@@ -78,11 +78,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738741697,
-        "narHash": "sha256-F3/gglt0typLI/h4i+iXw9n6Y3ZZH42bx5riIU/6AsY=",
+        "lastModified": 1738841109,
+        "narHash": "sha256-sEgE3nifaRU5gfAx33ds0tx/j+qM0/5/bHopv/w6c0c=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5997112695f3b02d3992764760fc6ddfef51fba3",
+        "rev": "f99c704fe3a4cf8d72b2d568ec80bc38be1a9407",
         "type": "github"
       },
       "original": {
@@ -165,11 +165,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1738664288,
-        "narHash": "sha256-BOO6/zNIX4YaefvelCcyB2+J7ZkwYFB4bTi5LusP/uk=",
+        "lastModified": 1738845740,
+        "narHash": "sha256-V3seZiebngA/F0XH27b5YYZZqrgApkJaizEpcgPnxw8=",
         "ref": "refs/heads/main",
-        "rev": "3b99e906df8b439d65e740301940e57efc057012",
-        "revCount": 5787,
+        "rev": "acbcf0cf115d55ef80a75ded3223a9e098f77541",
+        "revCount": 5796,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -381,11 +381,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738277753,
-        "narHash": "sha256-iyFcCOk0mmDiv4ut9mBEuMxMZIym3++0qN1rQBg8FW0=",
+        "lastModified": 1738743987,
+        "narHash": "sha256-O3bnAfsObto6l2tQOmQlrO6Z2kD6yKwOWfs7pA0CpOc=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "49b807fa7c37568d7fbe2aeaafb9255c185412f9",
+        "rev": "ae406c04577ff9a64087018c79b4fdc02468c87c",
         "type": "github"
       },
       "original": {
@@ -412,17 +412,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1738407899,
-        "narHash": "sha256-l4uKwGXwBGWg6FfTRA8YcVU3l4h97ES1KHWysY3aTgw=",
+        "lastModified": 1738846178,
+        "narHash": "sha256-US/CyzCKLzQHWuVTOk+ehB+2RnE+dE84DVWAauJPF9Y=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d2faa1bbca1b1e4962ce7373c5b0879e5b12cef2",
+        "rev": "6eac9dcd28f07ca1724bda155bdbb5d45fb41b89",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d2faa1bbca1b1e4962ce7373c5b0879e5b12cef2",
         "type": "github"
       }
     },

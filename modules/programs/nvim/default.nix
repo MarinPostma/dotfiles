@@ -7,6 +7,8 @@
 
       # LSPs
       nixd
+      jq
+      wget
     ];
     
     home.sessionVariables = {

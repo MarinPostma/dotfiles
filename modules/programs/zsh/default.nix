@@ -3,6 +3,8 @@
   home.packages = with pkgs; [
     lsd
     bat
+    htop
+    btop
   ];
 
   programs.zsh = {
