@@ -2,6 +2,9 @@
 {
   environment.systemPackages = with pkgs; [
     home-manager
+    nodejs
+    pnpm
+    pkg-config
   ];
 
   system = {
@@ -14,7 +17,7 @@
 
     defaults = {
       NSGlobalDomain = {
-        KeyRepeat = 2;
+        KeyRepeat = 1;
         InitialKeyRepeat = 10;
         AppleInterfaceStyle = "Dark";
         NSAutomaticSpellingCorrectionEnabled = false;
@@ -34,6 +37,7 @@
     };
   };
 
+
   programs = {
     gnupg.agent.enable = true;
     zsh.enable = true;  # default shell on catalina
@@ -48,6 +52,8 @@
       "raycast"
       "discord"
       "qutebrowser"
+      "spotify"
+      "karabiner-elements"
     ];
   };
 }
