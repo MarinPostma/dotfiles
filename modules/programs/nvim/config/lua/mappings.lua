@@ -10,9 +10,9 @@ vim.api.nvim_set_keymap('n', '<Up>', '<C-w>k', { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', '<Down>', '<C-w>j', { noremap = true, silent = true })
 
 -- Fuzzy find
-vim.api.nvim_set_keymap('n', '<C-f>', ":Rg<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-p>", ":Files<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-b>", ":Buffers<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-f>', ":Telescope live_grep<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-p>", ":Telescope find_files<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-b>", ":Telescope buffers<cr>", { noremap = true, silent = true })
 
 -- tools
 vim.api.nvim_set_keymap('n', '<leader>fs', ":NvimTreeToggle<CR>", { noremap = true, silent = true })
