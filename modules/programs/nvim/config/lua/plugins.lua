@@ -1,5 +1,29 @@
 return {
-    { 'nvim-telescope/telescope.nvim', lazy = true },
+    { 
+        'nvim-telescope/telescope.nvim',
+        lazy = true,
+        config = function()
+            require 'telescope'.setup {
+                defaults = {
+                    mappings = {
+                        i = {
+                            ["<CR>"] = function(bufnr)
+                                local picker = require('telescope.actions.state').get_current_picker(bufnr)
+                                local multi = picker:get_multi_selection()
+                                if not vim.tbl_isempty(multi) then
+                                    require 'telescope.actions'.send_selected_to_qflist(bufnr)
+                                    vim.cmd('copen')
+                                    require('telescope.actions').select_default(bufnr)
+                                else
+                                    require('telescope.actions').select_default(bufnr)
+                                end
+                            end
+                        }
+                    }
+                }
+            }
+        end
+    },
     { 'neovim/nvim-lspconfig', lazy = false },
     {
         "aznhe21/actions-preview.nvim",
