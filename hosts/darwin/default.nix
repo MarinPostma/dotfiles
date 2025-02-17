@@ -2,9 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     home-manager
-    nodejs
-    pnpm
-    pkg-config
+    xh
   ];
 
   system = {
@@ -28,7 +26,7 @@
     };
   };
 
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
 
   nix = {
     package = pkgs.nix;
@@ -54,6 +52,7 @@
       "qutebrowser"
       "spotify"
       "karabiner-elements"
+      "insomnia"
     ];
   };
 }
