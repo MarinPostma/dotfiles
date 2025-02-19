@@ -2,26 +2,58 @@ return {
     { 
         'nvim-telescope/telescope.nvim',
         lazy = true,
+        dependencies = {
+            { 
+                "nvim-telescope/telescope-live-grep-args.nvim" ,
+                -- This will not install any breaking changes.
+                -- For major updates, this must be adjusted manually.
+                version = "^1.0.0",
+            },
+        },
         config = function()
-            require 'telescope'.setup {
+            local ts = require 'telescope'
+            local lga_actions = require("telescope-live-grep-args.actions")
+
+            local selection_to_qflist = function(bufnr)
+                local picker = require('telescope.actions.state').get_current_picker(bufnr)
+                local multi = picker:get_multi_selection()
+                if not vim.tbl_isempty(multi) then
+                    require 'telescope.actions'.send_selected_to_qflist(bufnr)
+                    vim.cmd('copen')
+                    vim.cmd('cc')
+                else
+                    require('telescope.actions').select_default(bufnr)
+                end
+            end
+
+            ts.setup {
                 defaults = {
                     mappings = {
                         i = {
-                            ["<CR>"] = function(bufnr)
-                                local picker = require('telescope.actions.state').get_current_picker(bufnr)
-                                local multi = picker:get_multi_selection()
-                                if not vim.tbl_isempty(multi) then
-                                    require 'telescope.actions'.send_selected_to_qflist(bufnr)
-                                    require('telescope.actions').select_default(bufnr)
-                                    vim.cmd('copen')
-                                else
-                                    require('telescope.actions').select_default(bufnr)
-                                end
-                            end
+                            ["<CR>"] = selection_to_qflist,
                         }
+                    }
+                },
+                extensions = {
+                    live_grep_args = {
+                        auto_quoting = true, -- enable/disable auto-quoting
+                        -- define mappings, e.g.
+                        mappings = { -- extend mappings
+                            i = {
+                                -- ["<C-k>"] = lga_actions.quote_prompt(),
+                                -- ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+                                -- freeze the current list and start a fuzzy search in the frozen list
+                                ["<CR>"] = selection_to_qflist,
+                            },
+                        },
+                        -- ... also accepts theme settings, for example:
+                        -- theme = "dropdown", -- use dropdown theme
+                        -- theme = { }, -- use own theme spec
+                        -- layout_config = { mirror=true }, -- mirror preview pane
                     }
                 }
             }
+            ts.load_extension("live_grep_args")
         end
     },
     { 'neovim/nvim-lspconfig', lazy = false },

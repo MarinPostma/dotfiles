@@ -77,21 +77,30 @@ lsp.nixd.setup{}
 lsp.clojure_lsp.setup{
     capabilities = capabilities
 }
-lsp.pyright.setup{
-    capabilities = capabilities,
-    python = {
-        analysis = {
-            autoSearchPaths = true,
-            useLibraryCodeForTypes = true,
-            diagnosticMode = "workspace"
-        },
-        venvPath = ".venv",
-        pythonPath = vim.fn.exepath("poetry") .. " run python"
-    }
+
+lsp.ruff.setup {
+    capabilities=capabilities,
 }
+
+-- lsp.pyright.setup{
+--     capabilities = capabilities,
+--     python = {
+--         analysis = {
+--             autoSearchPaths = true,
+--             useLibraryCodeForTypes = true,
+--             diagnosticMode = "workspace"
+--         },
+--         venvPath = ".venv",
+--         pythonPath = vim.fn.exepath("poetry") .. " run python"
+--     }
+-- }
 lsp.zls.setup {}
 lsp.gopls.setup{}
 lsp.ts_ls.setup{}
+
+lsp.basedpyright.setup {
+    capabilities=capabilities,
+}
 
 lsp.emmet_ls.setup({
     -- on_attach = on_attach,
