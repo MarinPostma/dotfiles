@@ -70,6 +70,7 @@ vim.keymap.set(
 -- setup clangd
 lsp.clangd.setup{
     capabilities = capabilities,
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 }
 
 lsp.nixd.setup{}

@@ -9,6 +9,7 @@ return {
                 -- For major updates, this must be adjusted manually.
                 version = "^1.0.0",
             },
+            { 'nvim-telescope/telescope-fzf-native.nvim' },
         },
         config = function()
             local ts = require 'telescope'
@@ -54,6 +55,7 @@ return {
                 }
             }
             ts.load_extension("live_grep_args")
+            ts.load_extension("fzf")
         end
     },
     { 'neovim/nvim-lspconfig', lazy = false },

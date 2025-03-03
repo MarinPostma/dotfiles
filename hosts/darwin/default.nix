@@ -43,16 +43,24 @@
 
   homebrew = {
     enable = true;
+    onActivation = {
+      autoUpdate = true;
+      cleanup ="uninstall";
+      upgrade=true;
+    };
 
     casks = [
       "1password"
       "arc"
       "raycast"
       "discord"
-      "qutebrowser"
       "spotify"
       "karabiner-elements"
       "insomnia"
+      "mongodb-compass"
+      "linear-linear"
+      "postman"
+      "ghostty"
     ];
   };
 }

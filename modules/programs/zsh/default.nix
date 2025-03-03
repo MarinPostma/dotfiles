@@ -31,6 +31,8 @@
       gw="git worktree";
       gwc="git worktree list | fzf -m | awk {print $1} | xargs -I _ git worktree remove -f _";
       py="python3";
+      nd="nix develop";
+      ndr="nix develop --command";
     };
 
     oh-my-zsh = {

@@ -7,6 +7,8 @@
       font-family = "JetBrainsMono Nerd Font Mono";
       window-decoration = system == "aarch64-darwin";
       theme = "catppuccin-mocha";
+      cursor-style = "block";
+      shell-integration-features=["no-cursor"];
     };
   };
 }
