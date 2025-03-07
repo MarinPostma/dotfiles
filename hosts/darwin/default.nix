@@ -43,11 +43,11 @@
 
   homebrew = {
     enable = true;
-    onActivation = {
-      autoUpdate = true;
-      cleanup ="uninstall";
-      upgrade=true;
-    };
+    # onActivation = {
+    #   autoUpdate = true;
+    #   cleanup ="uninstall";
+    #   upgrade=true;
+    # };
 
     casks = [
       "1password"
@@ -61,6 +61,7 @@
       "linear-linear"
       "postman"
       "ghostty"
+      "remarkable"
     ];
   };
 }
