@@ -12,9 +12,13 @@
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nix-darwin, home-manager, ... }@inputs: {
+  outputs = { nixpkgs, nix-darwin, home-manager, nixvim, ... }@inputs: {
     nixosConfigurations.desktop = let 
       system = "x86_64-linux";
     in nixpkgs.lib.nixosSystem {
@@ -37,7 +41,7 @@
           ./hosts/darwin
           home-manager.darwinModules.home-manager {
             home-manager = {
-              extraSpecialArgs = { inherit inputs system; };
+              extraSpecialArgs = { inherit inputs system nixvim; };
               users.adhoc = { ... }: {
                 imports = [ ./modules ];
                 home.username = "adhoc";

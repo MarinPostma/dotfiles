@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./programs/zsh
-    ./programs/nvim
+    # ./programs/nvim
     ./programs/qute
     ./programs/tmux
     ./programs/git
@@ -9,5 +9,6 @@
     ./programs/alacritty
     ./fonts.nix
     ./programs/ghostty
+    ./programs/nixvim
   ];
 }
