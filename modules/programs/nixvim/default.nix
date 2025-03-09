@@ -16,6 +16,10 @@
     wget
 
     (nixvim.legacyPackages.${system}.makeNixvim {
+
+      viAlias = true;
+      vimAlias = true;
+
       colorschemes.catppuccin = {
         enable = true;
         settings = {
@@ -54,6 +58,26 @@
       };
 
       keymaps = [
+        {
+          mode = "n";
+          key = "<Right>";
+          action = "<C-w>l";
+        }
+        {
+          mode = "n";
+          key = "<Left>";
+          action = "<C-w>h";
+        }
+        {
+          mode = "n";
+          key = "<Down>";
+          action = "<C-w>j";
+        }
+        {
+          mode = "n";
+          key = "<Up>";
+          action = "<C-w>k";
+        }
         {
           mode = "n";
           key = "<C-f>";
@@ -158,10 +182,69 @@
 
       plugins = {
         rustaceanvim.enable = true;
-        cmp.enable = true;
+
+        cmp = {
+          enable = true;
+          settings = {
+            mapping = {
+              "<C-j>" = "cmp.mapping.select_next_item()";
+              "<C-k>" = "cmp.mapping.select_prev_item()";
+              "<CR>" = "cmp.mapping.confirm({ select = true })";
+              "<C-space>" = "cmp.mapping.complete()";
+            };
+
+            snippet = {
+              expand = "function(args) require('luasnip').lsp_expand(args.body) end";
+            };
+            sources = [
+              { name = "nvim_lsp"; }
+              { name = "path"; }
+              { name = "buffer"; }
+              { name = "luasnip"; }
+            ];
+          };
+
+          cmdline = {
+            "/" = {
+              mapping = {
+                __raw = "cmp.mapping.preset.cmdline()";
+            };
+            sources = [
+              { name = "buffer"; }
+            ];
+          };
+          ":" = {
+              mapping = {
+                __raw = "cmp.mapping.preset.cmdline()";
+              };
+              sources = [
+                { name = "path"; }
+                { 
+                  name = "cmdline";
+                  option = {
+                    ignore_cmds = [
+                      "Man"
+                      "!"
+                    ];
+                  };
+                }
+              ];
+            };
+          };
+        };
+
+
+        luasnip = {
+          enable = true;
+          settings = {
+            enable_autosnippets = true;
+          };
+        };
+
         cmp-buffer.enable = true;
         cmp-cmdline.enable = true;
         cmp-nvim-lsp.enable = true;
+        cmp_luasnip.enable = true;
 
         lsp = {
           enable = true;
@@ -171,6 +254,7 @@
             ruff.enable = true;
             ts_ls.enable = true;
             emmet_ls.enable = true;
+            basedpyright.enable = true;
           };
         };
 
