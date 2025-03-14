@@ -20,28 +20,10 @@
       viAlias = true;
       vimAlias = true;
 
-      colorschemes.catppuccin = {
+      colorschemes.kanagawa = {
         enable = true;
         settings = {
-          dim_inactive = {
-            enabled = true;
-            shade = "dark";
-            percentage = 0.15;
-          };
-          styles = {
-            comments = [ "italic" ];
-            loops = [ "bold" ];
-            functions = [ "bold" ];
-            confitionals = [ "bold" ];
-            types = [ "bold" ];
-          };
-          flavour = "mocha";
-          integration = {
-            cmp = true;
-            gitsigns = true;
-            nvimtree = true;
-            treesitter = true;
-          };
+          theme = "lotus";
         };
       };
 
@@ -106,7 +88,7 @@
         {
           mode = "n";
           key = "ga";
-          action = "<cmd>lua vim.lsp.buf.code_action()<CR>";
+          action = "<cmd>lua require('fastaction').code_action()<CR>";
         }
         {
           mode = "n";
@@ -155,20 +137,21 @@
         }
         {
           mode = "n";
-          key = "<leader>bl";
-          action = ":Gitsigns blame_line<CR>";
-        }
-        {
-          mode = "n";
-          key = "<leader>bl";
-          action = ":Gitsigns blame_line<CR>";
-        }
-        {
-          mode = "n";
           key = "<leader>g";
           action = ":lua require('neogit').open()<CR>";
         }
       ];
+
+      extraFiles = {
+        "ftplugin/typescript.vim".text = ''
+          set shiftwidth=2
+          set tabstop=2
+        '';
+        "ftplugin/javascript.vim".text = ''
+          set shiftwidth=2
+          set tabstop=2
+        '';
+      };
 
       performance.byteCompileLua.enable = true;
 
@@ -178,10 +161,13 @@
         clipboard = "unnamedplus";
         swapfile = false;
         cursorline = true;
+        mouse="";
       };
 
       plugins = {
         rustaceanvim.enable = true;
+
+        fastaction.enable = true;
 
         cmp = {
           enable = true;
@@ -261,7 +247,13 @@
         nvim-autopairs.enable = true;
         nvim-surround.enable = true;
         neogit.enable = true;
-        gitsigns.enable = true;
+        gitsigns = {
+          enable = true;
+          settings = {
+            current_line_blame = true;
+        };
+
+        };
         nvim-tree.enable = true;
         oil = {
           enable = true;
@@ -272,6 +264,7 @@
           };
         };
 
+        lsp-lines.enable = true;
         rainbow-delimiters.enable = true;
         gitlinker.enable = true;
 

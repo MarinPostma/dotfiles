@@ -32,6 +32,8 @@
     package = pkgs.nix;
     settings = {
       "extra-experimental-features" = [ "nix-command" "flakes" ];
+      "builders-use-substitutes" = true;
+      "allow-import-from-derivation" = true;
     };
   };
 
@@ -43,11 +45,11 @@
 
   homebrew = {
     enable = true;
-    # onActivation = {
-    #   autoUpdate = true;
-    #   cleanup ="uninstall";
-    #   upgrade=true;
-    # };
+    onActivation = {
+      autoUpdate = true;
+      cleanup ="uninstall";
+      upgrade=true;
+    };
 
     casks = [
       "1password"
@@ -62,6 +64,7 @@
       "postman"
       "ghostty"
       "remarkable"
+      "amethyst"
     ];
   };
 }
