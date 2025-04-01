@@ -140,7 +140,6 @@
     wget
     alacritty
     git
-    rustup
     obsidian
     gcc
     clang
