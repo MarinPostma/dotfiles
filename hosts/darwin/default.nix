@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     home-manager
     xh
+    libiconv
   ];
 
   system = {
@@ -65,6 +66,8 @@
       "ghostty"
       "remarkable"
       "amethyst"
+      "tailscale"
+      "cursor"
     ];
   };
 }

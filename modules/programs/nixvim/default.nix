@@ -93,7 +93,7 @@
         {
           mode = "n";
           key = "K";
-          action = "<cmd>lua vim.lsp.buf.hover()<CR>";
+          action = "<cmd>RustLsp hover actions<CR>";
         }
         {
           mode = "n";
@@ -133,12 +133,17 @@
         {
           mode = "t";
           key = "<leader>tt";
-          action = ":<C-\\><C-n>:FloatermToggle<CR>";
+          action = "<C-\\><C-n>:FloatermToggle<CR>";
         }
         {
           mode = "n";
           key = "<leader>g";
           action = ":lua require('neogit').open()<CR>";
+        }
+        {
+          mode = "n";
+          key = "<leader>oo";
+          action = ":lua require('oil').open()<CR>";
         }
       ];
 
@@ -153,9 +158,40 @@
         '';
       };
 
+      extraConfigLua = ''
+        vim.api.nvim_create_autocmd({ "CursorHold" }, {
+          pattern = "*.rs",
+          callback = function()
+            vim.lsp.buf.format { async = true}
+          end
+        })
+        vim.api.nvim_create_autocmd({ "CursorHold" }, {
+          pattern = "*",
+          callback = function()
+            for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+              if vim.api.nvim_win_get_config(winid).zindex then
+                return
+              end
+            end
+            vim.diagnostic.open_float({
+              scope = "cursor",
+              focusable = false,
+              close_events = {
+                "CursorMoved",
+                "CursorMovedI",
+                "BufHidden",
+                "InsertCharPre",
+                "WinLeave",
+              },
+            })
+          end
+        })
+      '';
+
       performance.byteCompileLua.enable = true;
 
       opts = {
+        updatetime=500;
         number = true;
         termguicolors = true;
         clipboard = "unnamedplus";
@@ -165,9 +201,13 @@
       };
 
       plugins = {
-        rustaceanvim.enable = true;
+        rustaceanvim = {
+          enable = true;
+          rustAnalyzerPackage = null;
+        };
 
         fastaction.enable = true;
+        trouble.enable = true;
 
         cmp = {
           enable = true;
@@ -239,7 +279,10 @@
             nixd.enable = true;
             ruff.enable = true;
             ts_ls.enable = true;
-            emmet_ls.enable = true;
+            emmet_ls = {
+              enable = true;
+              filetypes = ["rust" "tsx"];
+            };
             basedpyright.enable = true;
           };
         };
@@ -264,11 +307,20 @@
           };
         };
 
-        lsp-lines.enable = true;
         rainbow-delimiters.enable = true;
         gitlinker.enable = true;
 
-        avante.enable = true;
+        avante = {
+          enable = true;
+          settings = {
+            claude = {
+              endpoint = "https://api.anthropic.com";
+              max_tokens = 4096;
+              model = "claude-3-5-sonnet-20240620";
+              temperature = 0;
+            };
+          };
+        };
 
         treesitter = {
           enable = true;
