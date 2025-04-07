@@ -159,10 +159,10 @@
       };
 
       extraConfigLua = ''
-        vim.api.nvim_create_autocmd({ "CursorHold" }, {
-          pattern = "*.rs",
+        vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+          pattern = { "*.rs" },
           callback = function()
-            vim.lsp.buf.format { async = true}
+            vim.lsp.buf.format { async = false}
           end
         })
         vim.api.nvim_create_autocmd({ "CursorHold" }, {
