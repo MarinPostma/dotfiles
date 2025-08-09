@@ -161,6 +161,7 @@
     perl
     linuxPackages_latest.perf
     wdisplays
+    chromium
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
