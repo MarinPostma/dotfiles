@@ -93,7 +93,7 @@
         {
           mode = "n";
           key = "K";
-          action = "<cmd>RustLsp hover actions<CR>";
+          action = "<cmd>lua vim.lsp.buf.hover() <CR>";
         }
         {
           mode = "n";
@@ -156,6 +156,9 @@
           set shiftwidth=2
           set tabstop=2
         '';
+      "ftplugin/rust.lua".text = ''
+          vim.keymap.set('n', '<leader>c', '<Cmd>make check<CR>', {silent = false })
+      '';
       };
 
       extraConfigLua = ''
@@ -203,6 +206,8 @@
       plugins = {
         rustaceanvim = {
           enable = true;
+          # rustAnalyzerPackage = null;
+          settings.tools.hover_actions.replace_builtin_hover = true;
         };
 
         fastaction.enable = true;
@@ -280,7 +285,7 @@
             ts_ls.enable = true;
             emmet_ls = {
               enable = true;
-              filetypes = ["rust" "tsx"];
+              filetypes = ["rust" "typescript" "typescriptreact"];
             };
             basedpyright.enable = true;
           };
@@ -336,6 +341,8 @@
             toml
             yaml
             c
+            wgsl
+            just
           ];
 
           settings = {

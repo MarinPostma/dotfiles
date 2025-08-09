@@ -7,6 +7,7 @@
   ];
 
   system = {
+    primaryUser = "adhoc";
     stateVersion = 6;
 
     keyboard = {
@@ -68,6 +69,9 @@
       "amethyst"
       "tailscale"
       "cursor"
+      "steam"
+      "github"
+      "figma"
     ];
   };
 }
