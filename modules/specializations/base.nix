@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, inputs, system, nixvim, ... }:
 {
   nix.settings.experimental-features = [ "nix-command"  "flakes" ];
   hardware.bluetooth.enable = true;
@@ -23,7 +23,7 @@
   ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs system; };
+    extraSpecialArgs = { inherit inputs system nixvim; };
     users = {
       "adhoc" = { ... }: {
         imports = [ ./.. ];

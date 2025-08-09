@@ -22,7 +22,7 @@
     nixosConfigurations.desktop = let 
       system = "x86_64-linux";
     in nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs system; };
+      specialArgs = { inherit inputs system nixvim; };
       modules = [ ./hosts/desktop ];
     };
 
