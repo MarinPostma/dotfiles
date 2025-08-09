@@ -149,8 +149,8 @@
             # "dimaround, swaync-control-center"
           ];
           render = {
-            explicit_sync = 2; # 0 = off, 1 = on, 2 = auto based on gpu driver.
-            explicit_sync_kms = 2; # 0 = off, 1 = on, 2 = auto based on gpu driver.
+            # explicit_sync = 2; # 0 = off, 1 = on, 2 = auto based on gpu driver.
+            # explicit_sync_kms = 2; # 0 = off, 1 = on, 2 = auto based on gpu driver.
             direct_scanout = false; # Set to true for less Fullscreen game lag (may cause glitches).
           };
           misc = {

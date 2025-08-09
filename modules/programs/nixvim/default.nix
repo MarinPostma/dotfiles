@@ -203,7 +203,6 @@
       plugins = {
         rustaceanvim = {
           enable = true;
-          rustAnalyzerPackage = null;
         };
 
         fastaction.enable = true;
