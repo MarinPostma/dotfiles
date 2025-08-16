@@ -156,9 +156,14 @@
           set shiftwidth=2
           set tabstop=2
         '';
-      "ftplugin/rust.lua".text = ''
+        "ftplugin/wgsl.vim".text = ''
+          set shiftwidth=2
+          set tabstop=2
+        '';
+        "ftplugin/rust.lua".text = ''
           vim.keymap.set('n', '<leader>c', '<Cmd>make check<CR>', {silent = false })
-      '';
+          vim.keymap.set('n', 'K', ':RustLsp hover actions<CR>', {silent = false })
+        '';
       };
 
       extraConfigLua = ''
@@ -280,6 +285,7 @@
           enable = true;
           inlayHints = true;
           servers = {
+            wgsl_analyzer.enable = true;
             nixd.enable = true;
             ruff.enable = true;
             ts_ls.enable = true;
@@ -313,18 +319,6 @@
 
         rainbow-delimiters.enable = true;
         gitlinker.enable = true;
-
-        avante = {
-          enable = true;
-          settings = {
-            claude = {
-              endpoint = "https://api.anthropic.com";
-              max_tokens = 4096;
-              model = "claude-3-5-sonnet-20240620";
-              temperature = 0;
-            };
-          };
-        };
 
         treesitter = {
           enable = true;

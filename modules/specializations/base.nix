@@ -1,6 +1,10 @@
 { pkgs, inputs, system, nixvim, ... }:
 {
   nix.settings.experimental-features = [ "nix-command"  "flakes" ];
+  nix.settings = {
+    max-jobs = 4;
+    cores = 16;
+  };
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   hardware.graphics = {
@@ -45,6 +49,7 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+    config.common.default = "*";
   };
 
 
