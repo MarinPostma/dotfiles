@@ -119,6 +119,9 @@
             sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
             force_no_accel = true;
           };
+          animations = {
+            enabled = false;
+          };
           general = {
             gaps_in = 4;
             gaps_out = 9;
@@ -291,7 +294,7 @@
               in
                 builtins.toString (x + 1 - (c * 10));
             in [
-              "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
+              "$mainMod, ${ws}, focusworkspaceoncurrentmonitor, ${toString (x + 1)}"
               "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
               "$mainMod CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
             ])
